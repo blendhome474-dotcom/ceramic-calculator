@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" sizes="192x192" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAIAAADdvvtQAAAHfElEQVR4nO3Zz28d1RnG8fc958w4917bbSSIlDgSu4Byjdkgg9NUSKnav6FSqv7Y0YpKkbpEKhWiQrQlrUBtKv4BKrIiK1BUgioVhUXkVkUIcBVwYMPCPwL2nXtn5py3C8dpS2DT5yj2uM9HXtnSqzP2d86cO9b7hvcL0f/K7fUCqNsYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEECPsI555wTM1HFp9HdYCaqZhZjBCehAanqaDSqqkodN7MuMTPv/ezMDDgHCsg5NxqNvrG09M2lU9ujkYjIAdqDnHMqamIqmlIyswNydSaiUpbl2tr6yxdfUey5gQZUjcenT5069+OfJolOPDJtHzJJIipiehAPi9dvfPjyxVfAIXkeYU3bfHjjow/+uVKEQlTEwKl7SsXMUrKF4bDX68UYQwjvvvfe5s3Nwgfr9rWJqtZNc+See+dPDtc3NvCBGQ7RIlKE4oOVle/+4PuhKJqm0e42pGpmIYSyLF9/9dIDJ05sb28PBoPnzj9/+cqbh6ZnUkp7vUSI935rc/1HZ7/30gu/z/KZJ09AIlIURVEUzz799IPD+dFo5Lp5po4pzk7PXL7yxot/vFAUxc43VcRP9eaPzD5+8vCoia7LJyHv/fm/tX5qKtfAbAGJSF3XC8P5U4tL42bc1YBi7JW91Y8/nkwmtztRkTalnksPzcrntXQ6oOAlSIr59tGcAanq9mhU1dXW1lZ3Awpf99W4uvOzSTLZbmXUdjyg3Ie4nAGJiHPOe3/r1WIH7bwdcfrli3d666u7si++k39m2j8YEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEFC3nEppRhjjNHM8k6+O2KMbYwppTt/ZCLRJHXysv4t+/ozBzQzM9Mre8Xh4Fwn97YYY+HLwWBw5w0QVL5WqDN1uidLyyP4zOvPFpCZhRAuv/Hn1Rs3qnHltJMBpZQGg/5bb79dlmXabchEvMpGba992o6bqN0OyLZby/i3yRlQWZYvXrgwqWtVFenoXq9mqSyn+r3+7QeZiRRin1TptysTs9TVKxMREe99VVvG506GUc45kzQ/HL7+6qVQBJUu36EiImJmMcZjR4/Wde29H1fVM0/94smqCr6T2+oXtDENBoOqrrz3+LRsLfZ7vQdOnOjyzflFdV2bmaoms+Nzc965g3F1KtI0jZlJjls9W0Axxq3t7VzT9gPvve6ed8bjcUc/V36VUBR55mSZIiLB++npaclS9V4zERMZV9Xtc/Sg3/chuE6fn3cls8lkkmtahoDMTEXfff/9584/76d6bUzdjsjEOylUnvn5U8fn5sbjcb/f/+Wvf3VteVnVdX0fct7Ftv32mW+d+8kTKUV8YJ6ARHTz5ublK2/OH5npOev02zavstHYJ6P05Lhyzu28nri2vHxtefnRxcWmaTq9yTrVv1y9Onf0mHc+y82Q7RFWhHBoevbxk4cXZmXUSkfftiWT2UJf+7T93cqk2H0X6lRV3aOLj1z608W6nXT0HemO4MLDj512OT5/3RqYa5CZpRSrNm7VMopd/R9bElHTcRtT+q9t1Mzquq7byc3PPut2QCG0bZvxQZz5Xxkq4lScdHUHEhP3FS+yVNXtuturyif74jv8u6D9gAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERJOQapKre++B98BJMnOYafFclk+A1ePPe/+cVOOecc8GFEIJzHb7rQsh8CdkCqptme3P9N39vC0lmuabuAVUZtTKuUx3TzneSWRvbt/569eHHTrdtu7fLA/kQ/vHOOwvD+VwD8wSUUjpyz70/PHvWl4eipSwz94yJU/Vq04PBTi51XX/nzJnjx445563TN4eIc25hfn5p8ZGmbbIMRAMys7IsnXMPDocvvfCHLGvaJybNOMZYDAZm9rMnzu31cnJKEk2k1+vjo6CAzMx7v7a2dn31+vrmhopKN48+X8o7r6omoiIxRjM7IFdnIiL9fv+j1VV8mN43vB9dT8d39f9nqug9keEMhC+CuqvDn0hpP2BABGFABGFABGFABGFABGFABGFABGFABGFABGFABGFABGFABGFABGFABGFABGFABGFABGFABGFABPkXGwVOksDx2VIAAAAASUVORK5CYII=">
+<link rel="icon" type="image/png" sizes="512x512" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAIAAAB7GkOtAAAHzUlEQVR4nO3dMU4CURRAUTUkLsPSgkZKWBFLckVQwnbobI0WIhnz5d9zVvCKSW7e/Mmfx5f16wMAPU+jBwBgDAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAICo1egBbnE6HEePAPDVZrcdPcLv2AAAogQAIEoAAKIEACBKAACi7vIroO/u7vCdUX78hMyzxJUm+BzRBgAQJQAAUQIAEDXJGcBnE7yYY1k3v9Z/f3tedhLu3f58GT3CkmwAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABC1Gj3A8ja77egRmMT+fBk9AvwhGwBAlAAARAkAQNQkZwCnw3H0CEzCs0SHDQAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKImuQrCFdBc6cebHjxLXGmCW0NsAABRAgAQJQAAUZOcAXz2/vY8egT+l5v/7DjBS16WNdkRkQ0AIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKJWowdY3v58GT0Ck9jstqNHgD9kAwCIEgCAKAEAiJrkDOB0OI4egUl4luiwAQBECQBAlAAARAkAQJQAAEQ9vqxfR88AwAA2AIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiPoAgsQvDf+qY4IAAAAASUVORK5CYII=">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAIAAADdvvtQAAAHfElEQVR4nO3Zz28d1RnG8fc958w4917bbSSIlDgSu4Byjdkgg9NUSKnav6FSqv7Y0YpKkbpEKhWiQrQlrUBtKv4BKrIiK1BUgioVhUXkVkUIcBVwYMPCPwL2nXtn5py3C8dpS2DT5yj2uM9HXtnSqzP2d86cO9b7hvcL0f/K7fUCqNsYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEECPsI555wTM1HFp9HdYCaqZhZjBCehAanqaDSqqkodN7MuMTPv/ezMDDgHCsg5NxqNvrG09M2lU9ujkYjIAdqDnHMqamIqmlIyswNydSaiUpbl2tr6yxdfUey5gQZUjcenT5069+OfJolOPDJtHzJJIipiehAPi9dvfPjyxVfAIXkeYU3bfHjjow/+uVKEQlTEwKl7SsXMUrKF4bDX68UYQwjvvvfe5s3Nwgfr9rWJqtZNc+See+dPDtc3NvCBGQ7RIlKE4oOVle/+4PuhKJqm0e42pGpmIYSyLF9/9dIDJ05sb28PBoPnzj9/+cqbh6ZnUkp7vUSI935rc/1HZ7/30gu/z/KZJ09AIlIURVEUzz799IPD+dFo5Lp5po4pzk7PXL7yxot/vFAUxc43VcRP9eaPzD5+8vCoia7LJyHv/fm/tX5qKtfAbAGJSF3XC8P5U4tL42bc1YBi7JW91Y8/nkwmtztRkTalnksPzcrntXQ6oOAlSIr59tGcAanq9mhU1dXW1lZ3Awpf99W4uvOzSTLZbmXUdjyg3Ie4nAGJiHPOe3/r1WIH7bwdcfrli3d666u7si++k39m2j8YEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEEYEEFC3nEppRhjjNHM8k6+O2KMbYwppTt/ZCLRJHXysv4t+/ozBzQzM9Mre8Xh4Fwn97YYY+HLwWBw5w0QVL5WqDN1uidLyyP4zOvPFpCZhRAuv/Hn1Rs3qnHltJMBpZQGg/5bb79dlmXabchEvMpGba992o6bqN0OyLZby/i3yRlQWZYvXrgwqWtVFenoXq9mqSyn+r3+7QeZiRRin1TptysTs9TVKxMREe99VVvG506GUc45kzQ/HL7+6qVQBJUu36EiImJmMcZjR4/Wde29H1fVM0/94smqCr6T2+oXtDENBoOqrrz3+LRsLfZ7vQdOnOjyzflFdV2bmaoms+Nzc965g3F1KtI0jZlJjls9W0Axxq3t7VzT9gPvve6ed8bjcUc/V36VUBR55mSZIiLB++npaclS9V4zERMZV9Xtc/Sg3/chuE6fn3cls8lkkmtahoDMTEXfff/9584/76d6bUzdjsjEOylUnvn5U8fn5sbjcb/f/+Wvf3VteVnVdX0fct7Ftv32mW+d+8kTKUV8YJ6ARHTz5ublK2/OH5npOev02zavstHYJ6P05Lhyzu28nri2vHxtefnRxcWmaTq9yTrVv1y9Onf0mHc+y82Q7RFWhHBoevbxk4cXZmXUSkfftiWT2UJf+7T93cqk2H0X6lRV3aOLj1z608W6nXT0HemO4MLDj512OT5/3RqYa5CZpRSrNm7VMopd/R9bElHTcRtT+q9t1Mzquq7byc3PPut2QCG0bZvxQZz5Xxkq4lScdHUHEhP3FS+yVNXtuturyif74jv8u6D9gAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERhAERJOQapKre++B98BJMnOYafFclk+A1ePPe/+cVOOecc8GFEIJzHb7rQsh8CdkCqptme3P9N39vC0lmuabuAVUZtTKuUx3TzneSWRvbt/569eHHTrdtu7fLA/kQ/vHOOwvD+VwD8wSUUjpyz70/PHvWl4eipSwz94yJU/Vq04PBTi51XX/nzJnjx445563TN4eIc25hfn5p8ZGmbbIMRAMys7IsnXMPDocvvfCHLGvaJybNOMZYDAZm9rMnzu31cnJKEk2k1+vjo6CAzMx7v7a2dn31+vrmhopKN48+X8o7r6omoiIxRjM7IFdnIiL9fv+j1VV8mN43vB9dT8d39f9nqug9keEMhC+CuqvDn0hpP2BABGFABGFABGFABGFABGFABGFABGFABGFABGFABGFABGFABGFABGFABGFABGFABGFABGFABGFABPkXGwVOksDx2VIAAAAASUVORK5CYII=">
+<link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjogItit2KfYs9io2Kkg2YPZhdmK2KfYqiDYp9mE2LPZitix2KfZhdmK2YMg2YjYp9mE2KjZiNix2LPZhNmK2YYiLCAic2hvcnRfbmFtZSI6ICLYrdin2LPYqNipINin2YTYs9mK2LHYp9mF2YrZgyIsICJzdGFydF91cmwiOiAiLi8iLCAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwgImJhY2tncm91bmRfY29sb3IiOiAiI0VFRjFFRSIsICJ0aGVtZV9jb2xvciI6ICIjMUYyQjI3IiwgImljb25zIjogW3sic3JjIjogImRhdGE6aW1hZ2UvcG5nO2Jhc2U2NCxpVkJPUncwS0dnb0FBQUFOU1VoRVVnQUFBTUFBQUFEQUNBSUFBQURkdnZ0UUFBQUhmRWxFUVZSNG5PM1p6MjhkMVJuRzhmYzk1OHc0OTE3YmJTU0lsRGdTdTRCeWpka2dnOU5VU0tuYXY2RlNxdjdZMFlwS2ticEVLaFdpUXJRbHJVQnRLdjRCS3JJaUsxQlVnaW9WaFVYa1ZrVUljQlZ3WU1QQ1B3TDJuWHRuNXB5M0M4ZHBTMkRUNXlqMnVNOUhYdG5TcXpQMmQ4NmNPOWI3aHZjTDBmL0s3ZlVDcU5zWUVFRVlFRUVZRUVFWUVFRVlFRUVZRUVFWUVFRVlFRUVZRUVFWUVFRVlFRUVZRUVFWUVFRVlFRUVZRUVFWUVFRVlFRUVZRUVFQ1BzSTU1NXdUTTFIRnA5SGRZQ2FxWmhaakJDZWhBYW5xYURTcXFrb2RON011TVRQdi9lek1ERGdIQ3NnNU54cU52ckcwOU0ybFU5dWprWWpJQWRxRG5ITXFhbUlxbWxJeXN3TnlkU2FpVXBibDJ0cjZ5eGRmVWV5NWdRWlVqY2VuVDUwNjkrT2ZKb2xPUERKdEh6SkpJaXBpZWhBUGk5ZHZmUGp5eFZmQUlYa2VZVTNiZkhqam93Lyt1VktFUWxURXdLbDdTc1hNVXJLRjRiRFg2OFVZUXdqdnZ2ZmU1czNOd2dmcjlyV0pxdFpOYytTZWUrZFBEdGMzTnZDQkdRN1JJbEtFNG9PVmxlLys0UHVoS0pxbTBlNDJwR3BtSVlTeUxGOS85ZElESjA1c2IyOFBCb1Buemo5LytjcWJoNlpuVWtwN3ZVU0k5MzVyYy8xSFo3LzMwZ3Uvei9LWkowOUFJbElVUlZFVXp6Nzk5SVBEK2RGbzVMcDVwbzRwems3UFhMN3l4b3QvdkZBVXhjNDNWY1JQOWVhUHpENSs4dkNvaWE3TEp5SHYvZm0vdFg1cUt0ZkFiQUdKU0YzWEM4UDVVNHRMNDJiYzFZQmk3Slc5MVk4L25rd210enRSa1RhbG5rc1B6Y3JudFhRNm9PQWxTSXI1OXRHY0FhbnE5bWhVMWRYVzFsWjNBd3BmOTlXNHV2T3pTVExaYm1YVWRqeWczSWU0bkFHSmlIUE9lMy9yMVdJSDdid2RjZnJsaTNkNjY2dTdzaSsrazM5bTJqOFlFRUVZRUVFWUVFRVlFRUVZRUVFWUVFRVlFRUVZRUVFWUVFRVlFRUVZRUVFWUVFRVlFRUVZRUVFWUVFRVlFRUVZRUVFWUVFRVlFRUVZRUVFWUVFRVlFRUVZRUVFWUVFRVlFRUVZRUVFWUVFRVlFRUVZRUVFWUVFRVlFRUVZRUVFWUVFRVlFRUVZRUVFWUVFRVlFRUVZRUVFWUVFRVlFRUVZRUVFWUVFRVlFRUVZRUVFWUVFRVlFRUVZRUVFWUVFRVlFRUVZRUVFWUVFRVlFRUVZRUVFWUVFRVlFRUVZRUVFWUVFRVlFRUVZRUVGQzNuRXBwUmhqak5ITThrNitPMktNYll3cHBUdC9aQ0xSSkhYeXN2NHQrL296QnpRek05TXJlOFhoNEZ3bjk3WVlZK0hMd1dCdzV3MFFWTDVXcUROMXVpZEx5eVA0ek92UEZwQ1poUkF1di9IbjFSczNxbkhsdEpNQnBaUUdnLzViYjc5ZGxtWGFiY2hFdk1wR2JhOTkybzZicU4wT3lMWmJ5L2kzeVJsUVdaWXZYcmd3cVd0VkZlbm9YcTltcVN5bityMys3UWVaaVJSaW4xVHB0eXNUczlUVkt4TVJFZTk5VlZ2RzUwNkdVYzQ1a3pRL0hMNys2cVZRQkpVdTM2RWlJbUptTWNaalI0L1dkZTI5SDFmVk0wLzk0c21xQ3I2VDIrb1h0REVOQm9PcXJyejMrTFJzTGZaN3ZRZE9uT2p5emZsRmRWMmJtYW9tcytOemM5NjVnM0YxS3RJMGpabEpqbHM5VzBBeHhxM3Q3VnpUOWdQdnZlNmVkOGJqY1VjL1YzNlZVQlI1NW1TWklpTEIrK25wYWNsUzlWNHpFUk1aVjlYdGMvU2czL2NodUU2Zm4zY2xzOGxra210YWhvRE1URVhmZmYvOTU4NC83NmQ2YlV6ZGpzakVPeWxVbnZuNVU4Zm41c2JqY2IvZi8rV3ZmM1Z0ZVZuVmRYMGZjdDdGdHYzMm1XK2QrOGtUS1VWOFlKNkFSSFR6NXVibEsyL09INW5wT2V2MDJ6YXZzdEhZSjZQMDVMaHl6dTI4bnJpMnZIeHRlZm5SeGNXbWFUcTl5VHJWdjF5OU9uZjBtSGMreTgyUTdSRldoSEJvZXZieGs0Y1habVhVU2tmZnRpV1QyVUpmKzdUOTNjcWsySDBYNmxSVjNhT0xqMXo2MDhXNm5YVDBIZW1PNE1MRGo1MTJPVDUvM1JxWWE1Q1pwUlNyTm03Vk1vcGQvUjliRWxIVGNSdFQrcTl0MU16cXVxN2J5YzNQUHV0MlFDRzBiWnZ4UVp6NVh4a3E0bFNjZEhVSEVoUDNGUyt5Vk5YdHV0dXJ5aWY3NGp2OHU2RDlnQUVSaEFFUmhBRVJoQUVSaEFFUmhBRVJoQUVSaEFFUmhBRVJoQUVSaEFFUmhBRVJoQUVSaEFFUmhBRVJoQUVSaEFFUmhBRVJoQUVSaEFFUmhBRVJoQUVSaEFFUmhBRVJoQUVSaEFFUmhBRVJoQUVSaEFFUmhBRVJoQUVSaEFFUmhBRVJoQUVSaEFFUmhBRVJoQUVSaEFFUmhBRVJoQUVSaEFFUmhBRVJoQUVSaEFFUmhBRVJoQUVSaEFFUmhBRVJoQUVSaEFFUmhBRVJoQUVSaEFFUmhBRVJoQUVSaEFFUmhBRVJoQUVSaEFFUmhBRVJoQUVSSk9RYXBLcmUrK0I5OEJKTW5PWWFmRmNsaytBMWVQUGUvK2NWT09lY2M4R0ZFSUp6SGI3clFzaDhDZGtDcXB0bWUzUDlOMzl2QzBsbXVhYnVBVlVadFRLdVV4M1R6bmVTV1J2YnQvNTY5ZUhIVHJkdHU3ZkxBL2tRL3ZIT093dkQrVndEOHdTVVVqcHl6NzAvUEh2V2w0ZWlwU3d6OTR5SlUvVnEwNFBCVGk1MVhYL256Sm5qeDQ0NTU2M1RONGVJYzI1aGZuNXA4WkdtYmJJTVJBTXlzN0lzblhNUERvY3Z2ZkNITEd2YUp5Yk5PTVpZREFabTlyTW56dTMxY25KS0VrMmsxK3ZqbzZDQXpNeDd2N2EyZG4zMSt2cm1ob3BLTjQ4K1g4bzdyNm9tb2lJeFJqTTdJRmRuSWlMOWZ2K2oxVlY4bU40M3ZCOWRUOGQzOWY5bnF1ZzlrZUVNaEMrQ3VxdkRuMGhwUDJCQUJHRkFCR0ZBQkdGQUJHRkFCR0ZBQkdGQUJHRkFCR0ZBQkdGQUJHRkFCR0ZBQkdGQUJHRkFCR0ZBQkdGQUJHRkFCR0ZBQkdGQUJQa1hHd1ZPa3NEeDJWSUFBQUFBU1VWT1JLNUNZSUk9IiwgInNpemVzIjogIjE5MngxOTIiLCAidHlwZSI6ICJpbWFnZS9wbmcifSwgeyJzcmMiOiAiZGF0YTppbWFnZS9wbmc7YmFzZTY0LGlWQk9SdzBLR2dvQUFBQU5TVWhFVWdBQUFnQUFBQUlBQ0FJQUFBQjdHa090QUFBSHpVbEVRVlI0bk8zZE1VNENVUlJBVVRVa0xzUFNna1pLV0JGTGNrVlF3bmJvYkkwV0lobno1ZDl6VnZDS1NXN2UvTW1meDVmMTZ3TUFQVStqQndCZ0RBRUFpQklBZ0NnQkFJZ1NBSUFvQVFDSUVnQ0FLQUVBaUJJQWdDZ0JBSWdTQUlBb0FRQ0lFZ0NBS0FFQWlCSUFnQ2dCQUlnU0FJQW9BUUNJRWdDQUtBRUFpQklBZ0NnQkFJZ1NBSUFvQVFDSUVnQ0FLQUVBaUJJQWdDZ0JBSWdTQUlBb0FRQ0lFZ0NBS0FFQWlCSUFnQ2dCQUlnU0FJQW9BUUNJRWdDQUtBRUFpQklBZ0NnQkFJZ1NBSUFvQVFDSUVnQ0FLQUVBaUJJQWdDZ0JBSWdTQUlBb0FRQ0lFZ0NBS0FFQWlCSUFnQ2dCQUlnU0FJQW9BUUNJRWdDQUtBRUFpQklBZ0NnQkFJZ1NBSUNvMWVnQmJuRTZIRWVQQVBEVlpyY2RQY0x2MkFBQW9nUUFJRW9BQUtJRUFDQktBQUNpN3ZJcm9PL3U3dkNkVVg3OGhNeXp4SlVtK0J6UkJnQVFKUUFBVVFJQUVEWEpHY0JuRTd5WVkxazN2OVovZjN0ZWRoTHUzZjU4R1QzQ2ttd0FBRkVDQUJBbEFBQlJBZ0FRSlFBQVVRSUFFQ1VBQUZFQ0FCQWxBQUJSQWdBUUpRQUFVUUlBRUNVQUFGRUNBQkFsQUFCUkFnQVFKUUFBVVFJQUVDVUFBRkVDQUJBbEFBQlJBZ0FRSlFBQVVRSUFFQ1VBQUZFQ0FCQWxBQUJSQWdBUUpRQUFVUUlBRUNVQUFGRUNBQkFsQUFCUkFnQVFKUUFBVVFJQUVDVUFBRkVDQUJBbEFBQlJBZ0FRSlFBQVVRSUFFQ1VBQUZFQ0FCQWxBQUJSQWdBUUpRQUFVUUlBRUNVQUFGRUNBQkFsQUFCUkFnQVFKUUFBVVFJQUVDVUFBRkVDQUJBbEFBQlJBZ0FRSlFBQVVRSUFFQ1VBQUZFQ0FCQWxBQUJSQWdBUUpRQUFVUUlBRUNVQUFGRUNBQkFsQUFCUkFnQVFKUUFBVVFJQUVDVUFBRkVDQUJBbEFBQlJBZ0FRSlFBQVVRSUFFQ1VBQUZFQ0FCQWxBQUJSQWdBUUpRQUFVUUlBRUNVQUFGRUNBQkFsQUFCUkFnQVFKUUFBVVFJQUVDVUFBRkVDQUJBbEFBQlJBZ0FRSlFBQVVRSUFFQ1VBQUZFQ0FCQWxBQUJSQWdBUUpRQUFVUUlBRUNVQUFGRUNBQkFsQUFCUkFnQVFKUUFBVVFJQUVDVUFBRkVDQUJBbEFBQlJBZ0FRSlFBQVVRSUFFQ1VBQUZFQ0FCQWxBQUJSQWdBUUpRQUFVUUlBRUNVQUFGRUNBQkFsQUFCUkFnQVFKUUFBVVFJQUVDVUFBRkVDQUJBbEFBQlJBZ0FRSlFBQVVRSUFFQ1VBQUZFQ0FCQWxBQUJSQWdBUUpRQUFVUUlBRUNVQUFGRUNBQkFsQUFCUkFnQVFKUUFBVVFJQUVDVUFBRkVDQUJBbEFBQlJBZ0FRSlFBQVVRSUFFQ1VBQUZFQ0FCQWxBQUJSQWdBUUpRQUFVUUlBRUNVQUFGRUNBQkFsQUFCUkFnQVFKUUFBVVFJQUVDVUFBRkVDQUJBbEFBQlJBZ0FRSlFBQVVRSUFFQ1VBQUZFQ0FCQWxBQUJSQWdBUUpRQUFVUUlBRUNVQUFGRUNBQkMxR2ozQThqYTc3ZWdSbU1UK2ZCazlBdndoR3dCQWxBQUFSQWtBUU5Ra1p3Q253M0gwQ0V6Q3MwU0hEUUFnU2dBQW9nUUFJRW9BQUtJRUFDQktBQUNpQkFBZ1NnQUFvZ1FBSUVvQUFLSW11UXJDRmRCYzZjZWJIanhMWEdtQ1cwTnNBQUJSQWdBUUpRQUFVWk9jQVh6Mi92WThlZ1QrbDV2LzdEakJTMTZXTmRrUmtRMEFJRW9BQUtJRUFDQktBQUNpQkFBZ1NnQUFvZ1FBSUVvQUFLSUVBQ0JLQUFDaUJBQWdTZ0FBb2dRQUlFb0FBS0lFQUNCS0FBQ2lCQUFnU2dBQW9nUUFJRW9BQUtJRUFDQktBQUNpQkFBZ1NnQUFvZ1FBSUVvQUFLSUVBQ0JLQUFDaUJBQWdTZ0FBb2dRQUlFb0FBS0lFQUNCS0FBQ2lCQUFnU2dBQW9nUUFJRW9BQUtJRUFDQktBQUNpQkFBZ1NnQUFvZ1FBSUVvQUFLSUVBQ0JLQUFDaUJBQWdTZ0FBb2dRQUlFb0FBS0lFQUNCS0FBQ2lCQUFnU2dBQW9nUUFJRW9BQUtJRUFDQktBQUNpQkFBZ1NnQUFvZ1FBSUVvQUFLSUVBQ0JLQUFDaUJBQWdTZ0FBb2dRQUlFb0FBS0lFQUNCS0FBQ2lCQUFnU2dBQW9nUUFJRW9BQUtJRUFDQktBQUNpQkFBZ1NnQUFvZ1FBSUVvQUFLSUVBQ0JLQUFDaUJBQWdTZ0FBb2dRQUlFb0FBS0lFQUNCS0FBQ2lCQUFnU2dBQW9nUUFJRW9BQUtJRUFDQktBQUNpQkFBZ1NnQUFvZ1FBSUVvQUFLSUVBQ0JLQUFDaUJBQWdTZ0FBb2dRQUlFb0FBS0lFQUNCS0FBQ2lCQUFnU2dBQW9nUUFJRW9BQUtJRUFDQktBQUNpQkFBZ1NnQUFvZ1FBSUVvQUFLSUVBQ0JLQUFDaUJBQWdTZ0FBb2dRQUlFb0FBS0lFQUNCS0FBQ2lCQUFnU2dBQW9nUUFJRW9BQUtJRUFDQktBQUNpQkFBZ1NnQUFvZ1FBSUVvQUFLSUVBQ0JLQUFDaUJBQWdTZ0FBb2dRQUlFb0FBS0lFQUNCS0FBQ2lCQUFnU2dBQW9nUUFJRW9BQUtJRUFDQktBQUNpQkFBZ1NnQUFvZ1FBSUVvQUFLSUVBQ0JLQUFDaUJBQWdTZ0FBb2dRQUlFb0FBS0lFQUNCS0FBQ2lCQUFnU2dBQW9nUUFJRW9BQUtJRUFDQktBQUNpQkFBZ1NnQUFvZ1FBSUVvQUFLSUVBQ0JLQUFDaUJBQWdTZ0FBb2dRQUlFb0FBS0pXb3dkWTN2NThHVDBDazlqc3RxTkhnRDlrQXdDSUVnQ0FLQUVBaUpya0RPQjBPSTRlZ1VsNGx1aXdBUUJFQ1FCQWxBQUFSQWtBUUpRQUFFUTl2cXhmUjg4QXdBQTJBSUFvQVFDSUVnQ0FLQUVBaUJJQWdDZ0JBSWdTQUlBb0FRQ0lFZ0NBS0FFQWlCSUFnQ2dCQUlnU0FJQW9BUUNJRWdDQUtBRUFpQklBZ0NnQkFJZ1NBSUFvQVFDSUVnQ0FLQUVBaUJJQWdDZ0JBSWdTQUlBb0FRQ0lFZ0NBS0FFQWlCSUFnQ2dCQUlnU0FJQW9BUUNJRWdDQUtBRUFpQklBZ0NnQkFJZ1NBSUFvQVFDSUVnQ0FLQUVBaUJJQWdDZ0JBSWdTQUlBb0FRQ0lFZ0NBS0FFQWlCSUFnQ2dCQUlnU0FJQW9BUUNJRWdDQUtBRUFpQklBZ0NnQkFJZ1NBSUFvQVFDSUVnQ0FLQUVBaVBvQWdzUXZEZitxWTRJQUFBQUFTVVZPUks1Q1lJST0iLCAic2l6ZXMiOiAiNTEyeDUxMiIsICJ0eXBlIjogImltYWdlL3BuZyJ9XX0=">
+<meta name="theme-color" content="#1F2B27">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="حاسبة السيراميك">
+<title>حاسبة كميات السيراميك والبورسلين — Home Blend</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+  :root{
+    --paper:#EEF1EE;
+    --ink:#1F2B27;
+    --line:#C7CFC8;
+    --clay:#B75B2E;
+    --clay-dark:#8F4622;
+    --slate:#3C5A55;
+    --ok:#3B7A57;
+    --warn:#B23A2E;
+    --card:#FBFCFA;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:
+      linear-gradient(var(--line) 1px, transparent 1px) 0 0/40px 40px,
+      linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0/40px 40px,
+      var(--paper);
+    color:var(--ink);
+    font-family:'Tajawal',sans-serif;
+    padding:0 0 60px;
+  }
+  header{
+    background:var(--ink);
+    color:var(--paper);
+    padding:22px 28px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:10px;
+    border-bottom:4px solid var(--clay);
+  }
+  header .brand{display:flex;align-items:center;gap:14px}
+  header .brand .tile-mark{
+    width:34px;height:34px;
+    background:repeating-linear-gradient(45deg,var(--clay) 0 6px, transparent 6px 12px);
+    border:2px solid var(--paper);
+    transform:rotate(3deg);
+  }
+  header h1{font-size:19px;margin:0;font-weight:900;letter-spacing:.3px}
+  header .sub{font-size:12px;opacity:.75;font-family:'JetBrains Mono',monospace}
+  .wrap{max-width:1180px;margin:0 auto;padding:26px 20px}
+  .grid{display:grid;grid-template-columns:1fr;gap:20px}
+  @media(min-width:980px){.grid.two{grid-template-columns:1.3fr 1fr}}
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:2px;
+    box-shadow:2px 2px 0 var(--line);
+    padding:20px;
+  }
+  .card h2{
+    font-size:14px;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    font-family:'JetBrains Mono',monospace;
+    color:var(--slate);
+    margin:0 0 14px;
+    padding-bottom:8px;
+    border-bottom:2px dashed var(--line);
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .eyebrow{font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--clay-dark);font-weight:700}
+  label{font-size:12.5px;color:var(--slate);display:block;margin-bottom:4px;font-weight:500}
+  input,select{
+    width:100%;
+    padding:9px 10px;
+    border:1px solid var(--line);
+    border-radius:2px;
+    background:#fff;
+    font-family:'Tajawal',sans-serif;
+    font-size:14px;
+    color:var(--ink);
+  }
+  input:focus,select:focus{outline:2px solid var(--clay);outline-offset:1px}
+  .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:10px}
+  button{
+    cursor:pointer;
+    border:none;
+    border-radius:2px;
+    font-family:'Tajawal',sans-serif;
+    font-weight:700;
+    font-size:13.5px;
+    padding:9px 16px;
+    transition:transform .08s ease;
+  }
+  button:active{transform:scale(.97)}
+  .btn-primary{background:var(--clay);color:#fff}
+  .btn-primary:hover{background:var(--clay-dark)}
+  .btn-ghost{background:transparent;border:1px solid var(--line);color:var(--slate)}
+  .btn-ghost:hover{border-color:var(--slate)}
+  .header-btn{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.35);color:var(--paper)}
+  .header-btn:hover{background:rgba(255,255,255,0.18);border-color:var(--paper)}
+  .btn-danger{background:transparent;color:var(--warn);border:1px solid var(--warn)}
+  .btn-danger:hover{background:var(--warn);color:#fff}
+  .btn-sm{padding:5px 10px;font-size:12px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{padding:8px 6px;text-align:right;border-bottom:1px solid var(--line)}
+  th{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--slate);text-transform:uppercase;letter-spacing:.5px}
+  tfoot td{font-weight:700;background:#F2EFE6;font-family:'JetBrains Mono',monospace}
+  .area-block{
+    border:1px solid var(--line);
+    border-right:4px solid var(--slate);
+    padding:14px;
+    margin-bottom:14px;
+    background:#fff;
+    position:relative;
+  }
+  .area-block .head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+  .area-block .head input.name{
+    font-weight:700;font-size:15px;border:none;background:transparent;padding:2px;width:auto;flex:1;
+  }
+  .part{border-top:1px dashed var(--line);padding-top:10px;margin-top:10px}
+  .part-title{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--clay-dark);font-weight:700;margin-bottom:6px;letter-spacing:.5px}
+  .m2-badge{
+    font-family:'JetBrains Mono',monospace;
+    background:var(--paper);
+    border:1px solid var(--line);
+    padding:2px 8px;
+    font-size:12px;
+    border-radius:2px;
+    color:var(--slate);
+  }
+  .catalog-item{
+    display:grid;
+    grid-template-columns:44px 1.2fr 70px 100px 90px 90px 70px 70px 34px;
+    gap:6px;
+    align-items:center;
+    padding:6px 0;
+    border-bottom:1px solid var(--line);
+    font-size:13px;
+  }
+  .catalog-item.header{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--slate);text-transform:uppercase}
+  .thumb{
+    width:40px;height:40px;border:1px solid var(--line);border-radius:2px;
+    background-size:cover;background-position:center;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--slate);background-color:#fff;
+  }
+  #viewer-wrap{position:relative}
+  #viewer{width:100%;height:340px;background:#dfe6e2;border:1px solid var(--line)}
+  .viewer-controls{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+  .totals-summary{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    gap:10px;
+    margin-bottom:16px;
+  }
+  .stat{background:var(--ink);color:var(--paper);padding:12px 14px;border-radius:2px}
+  .stat .n{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;color:var(--clay)}
+  .stat .l{font-size:11px;opacity:.8}
+  .note{font-size:12px;color:var(--slate);background:#F2EFE6;border:1px dashed var(--line);padding:8px 10px;margin-top:8px}
+  footer{max-width:1180px;margin:30px auto 0;padding:0 20px;font-size:11.5px;color:var(--slate);font-family:'JetBrains Mono',monospace;text-align:center}
+</style>
+</head>
+<body>
+
+<div id="lockScreen" style="position:fixed;inset:0;background:var(--ink);color:var(--paper);z-index:2000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;padding:20px;text-align:center">
+  <div class="tile-mark" style="width:44px;height:44px"></div>
+  <div style="font-size:18px;font-weight:700">حاسبة كميات السيراميك والبورسلين</div>
+  <div style="font-size:13px;opacity:.8;font-family:'JetBrains Mono',monospace" id="licenseNameDisplay"></div>
+  <div style="max-width:280px;width:100%">
+    <input id="licenseUsernameInput" type="text" placeholder="اسم المستخدم" style="text-align:center;margin-bottom:8px" onkeydown="if(event.key==='Enter') document.getElementById('licensePasswordInput').focus()">
+    <input id="licensePasswordInput" type="password" placeholder="كلمة المرور" style="text-align:center" onkeydown="if(event.key==='Enter') checkLicense()">
+    <button class="btn-primary" style="width:100%;margin-top:10px" onclick="checkLicense()">دخول</button>
+    <div id="licenseError" style="color:#ff8a70;font-size:12px;margin-top:8px;display:none">اسم المستخدم أو كلمة المرور غير صحيحة</div>
+  </div>
+  <div style="font-size:11px;opacity:.6;max-width:320px">هذه النسخة مرخّصة حصريًا للاستخدام الداخلي فقط، ولا يجوز نسخها أو توزيعها أو بيعها لأي جهة أخرى.</div>
+</div>
+
+<div id="appRoot" style="display:none">
+
+<header>
+  <div class="brand">
+    <div class="tile-mark"></div>
+    <div>
+      <h1>حاسبة كميات السيراميك والبورسلين</h1>
+      <div class="sub">TILE QUANTITY & 3D PREVIEW — <span id="licenseNameHeader"></span></div>
+    </div>
+  </div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+    <span style="color:var(--paper);font-size:12px;opacity:.85" id="currentRepDisplay"></span>
+    <button class="header-btn btn-sm" onclick="newClientProject()">🆕 عميل جديد</button>
+    <button class="header-btn btn-sm" onclick="saveProject()">💾 حفظ / تحديث ملف العميل</button>
+    <button class="header-btn btn-sm" onclick="openProjectsList()">📂 فتح ملف عميل محفوظ</button>
+    <button class="header-btn btn-sm" onclick="exportBackup()">⬇️ نسخة احتياطية</button>
+    <button class="header-btn btn-sm" onclick="document.getElementById('backupInput').click()">⬆️ استعادة نسخة</button>
+    <input type="file" id="backupInput" accept=".json" style="display:none" onchange="importBackup(event)">
+    <button class="btn-primary btn-sm" onclick="printInvoice()">🖨️ طباعة الفاتورة</button>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="card" style="margin-bottom:20px">
+    <h2>بيانات العميل والمشروع</h2>
+    <div class="row" style="grid-template-columns:repeat(4,1fr)">
+      <div><label>اسم العميل</label><input id="clientName" placeholder="شركة الغنيمى"></div>
+      <div><label>الموقع / الوحدة</label><input id="unit" placeholder="B28 B82"></div>
+      <div><label>تليفون العميل</label><input id="phone" placeholder="01xxxxxxxxx"></div>
+      <div><label>التاريخ</label><input id="pdate" type="date"></div>
+    </div>
+  </div>
+
+  <div class="grid two">
+    <div class="card">
+      <h2>كتالوج الأصناف <span class="eyebrow" id="catCount"></span></h2>
+      <div style="display:flex;gap:8px;margin-bottom:10px">
+        <input id="catSearch" placeholder="ابحث بالاسم أو الكود أو الشركة..." oninput="renderCatalog()">
+        <button class="btn-ghost btn-sm" id="catToggleBtn" onclick="toggleCatalogView()" style="white-space:nowrap">عرض القائمة ▾</button>
+      </div>
+      <div id="catalogTableWrap" style="display:none">
+        <div class="catalog-item header">
+          <div>صورة</div><div>اسم الصنف</div><div>الكود</div><div>الشركة</div><div>الاستخدام</div><div>المقاس سم</div><div>م²/كرتونة</div><div>سعر م²</div><div></div>
+        </div>
+        <div id="catalogList"></div>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+        <button class="btn-ghost btn-sm" onclick="addCatalogItem()">+ إضافة صنف يدويًا</button>
+        <button class="btn-danger btn-sm" onclick="clearCatalog()">🗑️ مسح الكتالوج بالكامل</button>
+        <button class="btn-primary btn-sm" onclick="document.getElementById('excelInput').click()">📥 استيراد كتالوج من إكسيل</button>
+        <input type="file" id="excelInput" accept=".xlsx,.xls" style="display:none" onchange="importExcel(event)">
+        <button class="btn-ghost btn-sm" onclick="document.getElementById('bulkImgInput').click()">📸 رفع صور الأصناف دفعة واحدة</button>
+        <input type="file" id="bulkImgInput" accept="image/*" multiple style="display:none" onchange="bulkUploadImages(event)">
+      </div>
+      <div class="note">الاستيراد بيقرأ أعمدة: كود الصنف، اسم الصنف، فئة المقاس، سعر البيع، اسم الشركة، الكمية بالكرتونة — ويحسب سعر المتر تلقائيًا (سعر البيع ÷ الكمية بالكرتونة). ترتيب الأعمدة في الملف مش مهم، الأداة بتتعرف عليها بالاسم مش بالترتيب. لرفع الصور: نزّل صور المنتجات على جهازك وسمّي كل ملف بنفس كود الصنف بالظبط (مثلاً CGF100.jpg)، وبعدين دوس "رفع صور الأصناف دفعة واحدة" واختارهم كلهم مرة واحدة.</div>
+    </div>
+
+    <div class="card" id="viewer-wrap">
+      <h2>معاينة 3D مبسطة</h2>
+      <div id="viewer"></div>
+      <div class="viewer-controls">
+        <select id="viewerRoomSelect" onchange="renderViewer()"></select>
+        <button class="btn-ghost btn-sm" onclick="rotateViewer(-1)">↺ تدوير</button>
+        <button class="btn-ghost btn-sm" onclick="rotateViewer(1)">↻ تدوير</button>
+      </div>
+      <div class="note">معاينة تقريبية للتوزيع والألوان — وليست رندر نهائي بجودة تسويقية. للحمام والمطبخ: اضغط مطولًا (أو بالماوس) على أي قطعة (حوض، تواليت، بانيو، دولاب) واسحبها لمكانها المناسب — الموضع بيتحفظ تلقائيًا لكل فراغ.</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:20px">
+    <h2>مساحات الوحدة <span class="eyebrow">أرضيات + حوائط</span></h2>
+    <div id="areasList"></div>
+    <button class="btn-primary btn-sm" onclick="addArea()">+ إضافة فراغ جديد (حمام / مطبخ / غرفة / ريسبشن)</button>
+  </div>
+
+  <div class="card" style="margin-top:20px">
+    <h2>ملخص الكميات المطلوبة</h2>
+    <div class="totals-summary" id="statsBar"></div>
+    <table>
+      <thead><tr><th>الصنف</th><th>الاستخدام</th><th>الأماكن</th><th>م² المطلوبة</th><th>عدد الكرتونات</th></tr></thead>
+      <tbody id="resultsBody"></tbody>
+      <tfoot><tr><td colspan="3">الإجمالي</td><td id="totalM2">0</td><td id="totalBoxes">0</td></tr></tfoot>
+    </table>
+  </div>
+
+  <div class="card" style="margin-top:20px">
+    <h2>فاتورة العميل <span class="eyebrow">حسب سعر المتر في الكتالوج</span></h2>
+    <table>
+      <thead><tr><th>م</th><th>الصنف</th><th>الأماكن</th><th>الكمية (م²)</th><th>سعر المتر</th><th>الإجمالي</th></tr></thead>
+      <tbody id="invoiceBody"></tbody>
+      <tfoot><tr><td colspan="5">إجمالي الفاتورة</td><td id="invSubtotal">0</td></tr></tfoot>
+    </table>
+
+    <div class="row" style="grid-template-columns:1fr 1fr;margin-top:16px">
+      <div><label>خصم نقدي (يُخصم)</label><input type="number" id="discount" value="0" onchange="calculate()"></div>
+      <div><label>قيمة النقل (يُضاف)</label><input type="number" id="transport" value="0" onchange="calculate()"></div>
+    </div>
+
+    <table style="margin-top:6px">
+      <tbody>
+        <tr><td>إجمالي الفاتورة</td><td id="invLine1" style="font-family:'JetBrains Mono',monospace">0</td></tr>
+        <tr><td>خصم نقدي</td><td id="invLine2" style="font-family:'JetBrains Mono',monospace;color:var(--warn)">0-</td></tr>
+        <tr><td>قيمة النقل</td><td id="invLine3" style="font-family:'JetBrains Mono',monospace;color:var(--ok)">0+</td></tr>
+      </tbody>
+      <tfoot>
+        <tr><td>الصافي المستحق سداده</td><td id="grandTotal" style="font-family:'JetBrains Mono',monospace;font-size:18px">0 جنيه</td></tr>
+      </tfoot>
+    </table>
+    <div class="note" id="tafqit">فقط لا غير: ---</div>
+
+    <div style="border-top:1px dashed var(--line);margin-top:16px;padding-top:14px">
+      <div class="row" style="grid-template-columns:1fr 1fr">
+        <div><label>المبلغ المدفوع (السداد)</label><input type="number" id="paidAmount" value="0" onchange="calculate()"></div>
+        <div><label>المتبقي</label><input type="text" id="remainingAmount" value="0" disabled style="font-weight:700;background:#F2EFE6"></div>
+      </div>
+    </div>
+
+    <div style="margin-top:14px">
+      <button class="btn-ghost btn-sm" onclick="printDeliveryNote()">🖨️ طباعة إذن تسليم للمخازن</button>
+      <div class="note">إذن التسليم بيطبع كميات الأصناف لكل فراغ من غير أسعار — مخصص للمخزن للتجهيز والتسليم فقط.</div>
+    </div>
+  </div>
+
+</div>
+
+<footer>ملف يعمل محليًا بالكامل على جهازك — البيانات تُحفظ داخل المتصفح على نفس الجهاز. جميع الحسابات تقريبية وتشمل نسبة هالك افتراضية، يُنصح بمراجعة فني التركيب قبل الشراء النهائي.<br><span id="licenseNameFooter" style="opacity:.7"></span></footer>
+
+</div>
+
+<div id="projectsModal" style="display:none;position:fixed;inset:0;background:rgba(31,43,39,0.85);z-index:999;align-items:center;justify-content:center;">
+  <div style="background:var(--card);max-width:520px;width:92%;max-height:80vh;overflow-y:auto;border-radius:2px;padding:20px;border:1px solid var(--line)">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+      <h2 style="margin:0;border:none;padding:0">ملفات العملاء المحفوظة</h2>
+      <button class="btn-ghost btn-sm" onclick="closeProjectsList()">✕ إغلاق</button>
+    </div>
+    <div id="projectsListBody"></div>
+  </div>
+</div>
+
+<script>
+// ---------- LICENSE (لا تُعدَّل هذه القيم من داخل الواجهة) ----------
+const LICENSE = {
+  name: 'Home Blend — النسخة الرئيسية'
+};
+
+// أضف مندوب جديد بسطر هنا: { username: 'اسم الدخول', password: 'كلمة المرور', name: 'الاسم الظاهر' }
+const SALES_REPS = [
+  { username: 'admin',   password: 'homeblend2026', name: 'الإدارة' },
+  { username: 'rep1',    password: 'rep1pass',       name: 'مندوب 1' },
+];
+
+// ---------- STATE ----------
+let catalog = [
+  {id:cid(), name:'Sardenia White 60x120', code:'', company:'', use:'floor_wall', l:120, w:60, m2box:1.44, priceCarton:0, price:0, color:'#EDEAE1'},
+  {id:cid(), name:'Sardenia Green 60x120', code:'', company:'', use:'floor_wall', l:120, w:60, m2box:1.44, priceCarton:0, price:0, color:'#7C8B7E'},
+];
+let areas = [];
+let scene, camera, renderer, roomGroup, rotY = 0.6;
+let draggableFixtures = [], currentRoomBounds = {L:2.5, W:2}, dragTarget = null;
+let dragRaycaster, dragPlane;
+function ensureDragTools(){
+  if(!dragRaycaster && window.THREE){
+    dragRaycaster = new THREE.Raycaster();
+    dragPlane = new THREE.Plane(new THREE.Vector3(0,1,0), 0);
+  }
+}
+
+function cid(){ return 'id'+Math.random().toString(36).slice(2,9); }
+
+// ---------- CATALOG ----------
+let catalogExpanded = false;
+
+function toggleCatalogView(){
+  catalogExpanded = !catalogExpanded;
+  document.getElementById('catalogTableWrap').style.display = catalogExpanded ? 'block' : 'none';
+  document.getElementById('catToggleBtn').textContent = catalogExpanded ? 'إخفاء القائمة ▴' : 'عرض القائمة ▾';
+}
+
+function renderCatalog(){
+  const list = document.getElementById('catalogList');
+  const q = (document.getElementById('catSearch')?.value || '').trim().toLowerCase();
+  const filtered = q ? catalog.filter(c =>
+    (c.name||'').toLowerCase().includes(q) ||
+    (c.code||'').toLowerCase().includes(q) ||
+    (c.company||'').toLowerCase().includes(q)
+  ) : catalog;
+
+  list.innerHTML = '';
+  filtered.forEach(item=>{
+    const row = document.createElement('div');
+    row.className = 'catalog-item';
+    row.innerHTML = `
+      <div class="thumb" style="${item.image?`background-image:url('${item.image}')`:''}" onclick="document.getElementById('img_${item.id}').click()">${item.image?'':'📷'}</div>
+      <input type="file" id="img_${item.id}" accept="image/*" style="display:none" onchange="uploadCatImage('${item.id}', event)">
+      <input value="${item.name}" onchange="updateCat('${item.id}','name',this.value)">
+      <input value="${item.code||''}" placeholder="كود" onchange="updateCat('${item.id}','code',this.value)">
+      <input value="${item.company||''}" placeholder="الشركة" onchange="updateCat('${item.id}','company',this.value)">
+      <select onchange="updateCat('${item.id}','use',this.value)">
+        <option value="floor_wall" ${item.use==='floor_wall'?'selected':''}>أرضية وحوائط</option>
+        <option value="floor" ${item.use==='floor'?'selected':''}>أرضية فقط</option>
+        <option value="wall" ${item.use==='wall'?'selected':''}>حوائط فقط</option>
+      </select>
+      <div style="display:flex;gap:2px;align-items:center">
+        <input type="number" value="${item.l}" style="width:44px;padding:5px" onchange="updateCat('${item.id}','l',this.value)">
+        <span style="font-size:11px">×</span>
+        <input type="number" value="${item.w}" style="width:44px;padding:5px" onchange="updateCat('${item.id}','w',this.value)">
+      </div>
+      <input type="number" step="0.01" value="${item.m2box}" onchange="updateCat('${item.id}','m2box',this.value)">
+      <input type="number" step="0.01" value="${item.price||0}" title="سعر البيع بالكرتونة: ${item.priceCarton||0}" onchange="updateCat('${item.id}','price',this.value)">
+      <button class="btn-danger btn-sm" onclick="removeCat('${item.id}')">×</button>
+    `;
+    list.appendChild(row);
+  });
+  document.getElementById('catCount').textContent = catalog.length + ' صنف' + (q ? ` (${filtered.length} نتيجة)` : '');
+  refreshAllProductSelects();
+}
+function updateCat(id, field, val){
+  const item = catalog.find(c=>c.id===id);
+  if(!item) return;
+  item[field] = (field==='l'||field==='w'||field==='m2box'||field==='price') ? parseFloat(val)||0 : val;
+  renderCatalog(); calculate();
+}
+function clearCatalog(){
+  if(!confirm('هل أنت متأكد من مسح كل أصناف الكتالوج؟ هذا الإجراء لا يمكن التراجع عنه.')) return;
+  catalog = [];
+  renderCatalog(); calculate();
+  alert('تم مسح الكتالوج. تقدر تستورد ملف الإكسيل تاني دلوقتي من غير تكرار.');
+}
+
+function addCatalogItem(){
+  catalog.push({id:cid(), name:'صنف جديد', code:'', company:'', use:'floor_wall', l:60, w:60, m2box:1.44, priceCarton:0, price:0, color:randColor()});
+  renderCatalog(); calculate();
+}
+function removeCat(id){
+  catalog = catalog.filter(c=>c.id!==id);
+  renderCatalog(); calculate();
+}
+function randColor(){
+  const palette=['#D8D3C6','#8FA396','#B7B0A0','#9CACA8','#C9B79C','#7C8B7E'];
+  return palette[Math.floor(Math.random()*palette.length)];
+}
+
+// ---------- AREAS ----------
+const ROOM_NAMES = [
+  'الصالون / الريسبشن','المدخل','طرقة التوزيع',
+  'نوم رئيسية','نوم 2','نوم 3',
+  'المطبخ','حمام غرفة النوم','الحمام الرئيسي','حمام الضيوف',
+  'أخرى (تحديد يدوي)'
+];
+
+function addArea(){
+  areas.push({
+    id: cid(),
+    name: ROOM_NAMES[0],
+    customName:'',
+    parts: {
+      floor: {enabled:true, length:0, width:0, waste:10, productId: catalog[0]?.id||''},
+      wall:  {enabled:true, length:0, width:0, height:2.4, waste:10, productId: catalog[0]?.id||''},
+    }
+  });
+  renderAreas(); calculate();
+}
+
+function renderAreas(){
+  const list = document.getElementById('areasList');
+  list.innerHTML = '';
+  const roomSelect = document.getElementById('viewerRoomSelect');
+  roomSelect.innerHTML = '';
+
+  areas.forEach(area=>{
+    const block = document.createElement('div');
+    block.className = 'area-block';
+
+    const floorM2 = (area.parts.floor.length * area.parts.floor.width).toFixed(2);
+    const wallM2 = (2*(area.parts.wall.length+area.parts.wall.width)*area.parts.wall.height).toFixed(2);
+
+    block.innerHTML = `
+      <div class="head">
+        <select class="name" style="font-weight:700;font-size:15px;flex:1" onchange="updateAreaName('${area.id}',this.value)">
+          ${ROOM_NAMES.map(n=>`<option value="${n}" ${n===area.name?'selected':''}>${n}</option>`).join('')}
+        </select>
+        ${area.name==='أخرى (تحديد يدوي)' ? `<input placeholder="اكتب اسم الفراغ" value="${area.customName||''}" style="flex:1" onchange="updateAreaCustomName('${area.id}',this.value)">` : ''}
+        <button class="btn-danger btn-sm" onclick="removeArea('${area.id}')">حذف الفراغ ×</button>
+      </div>
+
+      <div class="part">
+        <div class="part-title">🟫 الأرضية &nbsp; <span class="m2-badge">${floorM2} م²</span></div>
+        <div class="row" style="grid-template-columns:repeat(4,1fr) 1.4fr">
+          <div><label>الطول (م)</label><input type="number" step="0.01" value="${area.parts.floor.length}" onchange="updatePart('${area.id}','floor','length',this.value)"></div>
+          <div><label>العرض (م)</label><input type="number" step="0.01" value="${area.parts.floor.width}" onchange="updatePart('${area.id}','floor','width',this.value)"></div>
+          <div><label>نسبة الهالك %</label><input type="number" value="${area.parts.floor.waste}" onchange="updatePart('${area.id}','floor','waste',this.value)"></div>
+          <div><label>&nbsp;</label><span class="m2-badge">${floorM2} م²</span></div>
+          <div><label>الصنف</label>${productSearchBox(area.id,'floor',area.parts.floor.productId)}</div>
+        </div>
+      </div>
+
+      <div class="part">
+        <div class="part-title">◽ الحوائط &nbsp; <span class="m2-badge">${wallM2} م²</span></div>
+        <div class="row" style="grid-template-columns:repeat(5,1fr) 1.4fr">
+          <div><label>طول الغرفة (م)</label><input type="number" step="0.01" value="${area.parts.wall.length}" onchange="updatePart('${area.id}','wall','length',this.value)"></div>
+          <div><label>عرض الغرفة (م)</label><input type="number" step="0.01" value="${area.parts.wall.width}" onchange="updatePart('${area.id}','wall','width',this.value)"></div>
+          <div><label>ارتفاع الكسوة (م)</label><input type="number" step="0.01" value="${area.parts.wall.height}" onchange="updatePart('${area.id}','wall','height',this.value)"></div>
+          <div><label>نسبة الهالك %</label><input type="number" value="${area.parts.wall.waste}" onchange="updatePart('${area.id}','wall','waste',this.value)"></div>
+          <div><label>&nbsp;</label><span class="m2-badge">${wallM2} م²</span></div>
+          <div><label>الصنف</label>${productSearchBox(area.id,'wall',area.parts.wall.productId)}</div>
+        </div>
+      </div>
+    `;
+    list.appendChild(block);
+
+    const opt = document.createElement('option');
+    opt.value = area.id; opt.textContent = displayName(area);
+    roomSelect.appendChild(opt);
+  });
+
+  if(areas.length) renderViewer();
+}
+
+function productLabel(item){
+  return `${item.name}${item.code?(' | '+item.code):''}${item.company?(' - '+item.company):''}`;
+}
+
+function productSearchBox(areaId, kind, selectedId){
+  const boxId = `pbox_${areaId}_${kind}`;
+  const selected = catalog.find(c=>c.id===selectedId);
+  const currentLabel = selected ? productLabel(selected) : '';
+  return `
+    <div style="position:relative">
+      <input id="${boxId}" value="${currentLabel}" placeholder="اكتب اسم الصنف أو الكود..." autocomplete="off"
+        oninput="showProductSuggestions('${areaId}','${kind}',this.value)"
+        onfocus="showProductSuggestions('${areaId}','${kind}',this.value)"
+        onblur="setTimeout(()=>hideProductSuggestions('${areaId}','${kind}'), 200)">
+      <div id="${boxId}_list" style="display:none;position:absolute;z-index:50;top:100%;right:0;left:0;background:#fff;border:1px solid var(--line);max-height:220px;overflow-y:auto;box-shadow:2px 2px 4px rgba(0,0,0,0.15)"></div>
+    </div>
+  `;
+}
+
+function showProductSuggestions(areaId, kind, query){
+  const listEl = document.getElementById(`pbox_${areaId}_${kind}_list`);
+  if(!listEl) return;
+  const q = (query||'').trim().toLowerCase();
+  const options = catalog.filter(c=> c.use==='floor_wall' || c.use===kind);
+  const matches = (q ? options.filter(c=>
+      c.name.toLowerCase().includes(q) ||
+      (c.code||'').toLowerCase().includes(q) ||
+      (c.company||'').toLowerCase().includes(q)
+    ) : options).slice(0, 40);
+
+  if(!matches.length){
+    listEl.innerHTML = `<div style="padding:8px;font-size:13px;color:var(--slate)">لا توجد أصناف مطابقة${catalog.length<=2?' — استورد الكتالوج أولًا من قسم "كتالوج الأصناف"':''}</div>`;
+  } else {
+    listEl.innerHTML = matches.map(c => `
+      <div style="padding:8px;font-size:13px;cursor:pointer;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:8px"
+        onmousedown="pickProduct('${areaId}','${kind}','${c.id}')">
+        <span>${productLabel(c)}</span>
+        <span style="color:var(--clay-dark);font-family:'JetBrains Mono',monospace;white-space:nowrap">${c.price||0} ج/م²</span>
+      </div>
+    `).join('');
+  }
+  listEl.style.display = 'block';
+}
+
+function hideProductSuggestions(areaId, kind){
+  const listEl = document.getElementById(`pbox_${areaId}_${kind}_list`);
+  if(listEl) listEl.style.display = 'none';
+}
+
+function pickProduct(areaId, kind, productId){
+  updatePart(areaId, kind, 'productId', productId);
+}
+function uploadCatImage(id, event){
+  const file = event.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = (e)=>{
+    const item = catalog.find(c=>c.id===id);
+    if(item){ item.image = e.target.result; renderCatalog(); renderViewer(); calculate(); }
+  };
+  reader.readAsDataURL(file);
+}
+
+function bulkUploadImages(event){
+  const files = Array.from(event.target.files || []);
+  if(!files.length) return;
+
+  let matched = 0, unmatched = [];
+  let pending = files.length;
+
+  files.forEach(file=>{
+    const baseName = file.name.replace(/\.[^/.]+$/, '').trim().toLowerCase();
+    const item = catalog.find(c => c.code && c.code.trim().toLowerCase() === baseName);
+    if(!item){
+      unmatched.push(file.name);
+      pending--;
+      if(pending===0) finishBulkUpload(matched, unmatched, event);
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = (e)=>{
+      item.image = e.target.result;
+      matched++;
+      pending--;
+      if(pending===0) finishBulkUpload(matched, unmatched, event);
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function finishBulkUpload(matched, unmatched, event){
+  renderCatalog(); renderViewer(); calculate();
+  let msg = `تم ربط ${matched} صورة بأصنافها بنجاح.`;
+  if(unmatched.length){
+    msg += `\n\nلم يتم العثور على كود مطابق لـ ${unmatched.length} ملف:\n` + unmatched.slice(0,15).join('\n');
+    if(unmatched.length>15) msg += `\n... و${unmatched.length-15} ملف آخر`;
+    msg += `\n\nتأكد أن اسم الملف مطابق تمامًا لكود الصنف كما يظهر في عمود "الكود" بالكتالوج.`;
+  }
+  alert(msg);
+  if(event && event.target) event.target.value = '';
+}
+
+function autoSaveState(){
+  try{
+    localStorage.setItem('tile_autosave', JSON.stringify({catalog, areas}));
+  }catch(e){ /* ignore quota errors */ }
+}
+function tryRestoreAutoSave(){
+  try{
+    const raw = localStorage.getItem('tile_autosave');
+    if(!raw) return false;
+    const data = JSON.parse(raw);
+    if(data.catalog && data.catalog.length){ catalog = data.catalog; }
+    if(data.areas && data.areas.length){ areas = data.areas; }
+    return true;
+  }catch(e){ return false; }
+}
+function refreshAllProductSelects(){ renderAreas(); }
+
+function applyImportedRows(aoa, opts){
+  opts = opts || {};
+  if(!aoa.length) return 0;
+  const header = aoa[0].map(h=>String(h).trim());
+  const findCol = (keywords)=> header.findIndex(h=> keywords.some(k=>h.toLowerCase().includes(k.toLowerCase())));
+  const idx = {
+    code: findCol(['كود','ID']),
+    name: findCol(['اسم الصنف','الصنف','Product']),
+    size: findCol(['مقاس']),
+    height: findCol(['height','ارتفاع']),
+    width: findCol(['width','عرض']),
+    price: findCol(['سعر','Price']),
+    company: findCol(['شركة','Company']),
+    box: findCol(['كرتونة','كرتونه']),
+    category: findCol(['فئة','Category']),
+    image: findCol(['Image_URL_1','صورة']),
+  };
+  if(idx.name===-1 || idx.price===-1) return -1;
+
+  let added = 0, updated = 0;
+  aoa.slice(1).forEach(row=>{
+    const name = String(row[idx.name]||'').trim();
+    if(!name) return;
+
+    let l=60, w=60;
+    if(idx.size>-1 && row[idx.size]){
+      const sizeStr = String(row[idx.size]).replace('×','*').replace('x','*').replace('X','*');
+      const parts = sizeStr.split('*').map(s=>parseFloat(s)||0);
+      l = parts[1] || parts[0] || 60;
+      w = parts[0] || 60;
+    } else if(idx.height>-1 && idx.width>-1){
+      l = parseFloat(row[idx.height])||60;
+      w = parseFloat(row[idx.width])||60;
+    }
+
+    const priceRaw = parseFloat(row[idx.price])||0;
+    const m2box = idx.box>-1 ? (parseFloat(row[idx.box])||1) : 1;
+    const priceM2 = idx.box>-1 ? +(priceRaw/m2box).toFixed(2) : +priceRaw.toFixed(2);
+
+    let use = 'floor_wall';
+    const cat = idx.category>-1 ? String(row[idx.category]||'') : '';
+    if(cat.includes('حوائط') || cat.toLowerCase().includes('wall')) use='wall';
+    else if(cat.includes('أرضية') || cat.includes('ارضية') || cat.toLowerCase().includes('floor')) use='floor';
+
+    const code = idx.code>-1 ? String(row[idx.code]||'').trim() : '';
+    const image = idx.image>-1 ? String(row[idx.image]||'') : '';
+    const company = idx.company>-1 ? String(row[idx.company]||'') : '';
+
+    const existing = opts.merge && code ? catalog.find(c=>c.code && c.code.trim()===code) : null;
+    if(existing){
+      existing.name = name; existing.company = company; existing.use = use;
+      existing.l = l; existing.w = w; existing.m2box = m2box;
+      existing.priceCarton = idx.box>-1 ? priceRaw : 0; existing.price = priceM2;
+      if(image) existing.image = image;
+      updated++;
+    } else {
+      catalog.push({
+        id:cid(), name, code, company, use, l, w, m2box,
+        priceCarton: idx.box>-1 ? priceRaw : 0, price: priceM2,
+        image, color: randColor()
+      });
+      added++;
+    }
+  });
+
+  renderCatalog(); calculate();
+  return {added, updated};
+}
+
+function importExcel(event){
+  const file = event.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = (e)=>{
+    try{
+      const data = new Uint8Array(e.target.result);
+      const wb = XLSX.read(data, {type:'array'});
+      const sheet = wb.Sheets[wb.SheetNames[0]];
+      const aoa = XLSX.utils.sheet_to_json(sheet, {header:1, defval:''});
+      const result = applyImportedRows(aoa, {merge:true});
+      if(result===-1){
+        alert('تعذر التعرف على أعمدة الملف. تأكد من أن أول صف يحتوي على عناوين الأعمدة.');
+      } else {
+        alert('تم استيراد ' + result.added + ' صنف بنجاح من الملف.');
+      }
+    }catch(err){
+      alert('حدث خطأ أثناء قراءة الملف: ' + err.message);
+    }
+    event.target.value = '';
+  };
+  reader.readAsArrayBuffer(file);
+}
+
+function updateAreaName(id, val){
+  const a = areas.find(a=>a.id===id); if(a) a.name = val;
+  renderAreas(); calculate();
+}
+function updateAreaCustomName(id, val){
+  const a = areas.find(a=>a.id===id); if(a){ a.customName = val; }
+  calculate();
+}
+function displayName(area){
+  return (area.name==='أخرى (تحديد يدوي)' && area.customName) ? area.customName : area.name;
+}
+function updatePart(id, part, field, val){
+  const a = areas.find(a=>a.id===id); if(!a) return;
+  a.parts[part][field] = (field==='productId') ? val : parseFloat(val)||0;
+  renderAreas(); calculate();
+}
+function removeArea(id){
+  areas = areas.filter(a=>a.id!==id);
+  renderAreas(); calculate();
+}
+
+// ---------- CALCULATION ----------
+function calculate(){
+  const totals = {}; // productId -> {m2, name, use}
+  let sumM2 = 0, roomCount = areas.length;
+
+  areas.forEach(a=>{
+    ['floor','wall'].forEach(kind=>{
+      const p = a.parts[kind];
+      if(!p) return;
+      let m2 = 0;
+      if(kind==='floor') m2 = p.length * p.width;
+      else m2 = 2*(p.length + p.width) * p.height;
+      if(m2<=0 || !p.productId) return;
+      const withWaste = m2 * (1 + (p.waste||0)/100);
+      sumM2 += m2;
+      if(!totals[p.productId]) totals[p.productId] = {m2:0, use:new Set(), rooms:new Set()};
+      totals[p.productId].m2 += withWaste;
+      totals[p.productId].use.add(kind==='floor'?'أرضية':'حوائط');
+      totals[p.productId].rooms.add(displayName(a));
+    });
+  });
+
+  const tbody = document.getElementById('resultsBody');
+  tbody.innerHTML = '';
+  let totalM2 = 0, totalBoxes = 0;
+
+  Object.entries(totals).forEach(([pid, t])=>{
+    const product = catalog.find(c=>c.id===pid);
+    if(!product) return;
+    const boxes = Math.ceil(t.m2 / (product.m2box||1));
+    totalM2 += t.m2; totalBoxes += boxes;
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${product.name}</td>
+      <td>${[...t.use].join(' + ')}</td>
+      <td>${[...t.rooms].join('، ')}</td>
+      <td>${t.m2.toFixed(2)}</td>
+      <td>${boxes}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  document.getElementById('totalM2').textContent = totalM2.toFixed(2) + ' م²';
+  document.getElementById('totalBoxes').textContent = totalBoxes + ' كرتونة';
+
+  document.getElementById('statsBar').innerHTML = `
+    <div class="stat"><div class="n">${roomCount}</div><div class="l">عدد الفراغات</div></div>
+    <div class="stat"><div class="n">${sumM2.toFixed(1)}</div><div class="l">م² صافي (بدون هالك)</div></div>
+    <div class="stat"><div class="n">${totalM2.toFixed(1)}</div><div class="l">م² شامل الهالك</div></div>
+    <div class="stat"><div class="n">${totalBoxes}</div><div class="l">إجمالي الكراتين</div></div>
+  `;
+
+  // ---- invoice ----
+  const invBody = document.getElementById('invoiceBody');
+  invBody.innerHTML = '';
+  let subtotal = 0, serial = 0;
+  Object.entries(totals).forEach(([pid, t])=>{
+    const product = catalog.find(c=>c.id===pid);
+    if(!product) return;
+    serial++;
+    const lineTotal = t.m2 * (product.price||0);
+    subtotal += lineTotal;
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${serial}</td>
+      <td>${product.name}</td>
+      <td>${[...t.rooms].join('، ')}</td>
+      <td>${t.m2.toFixed(2)}</td>
+      <td>${(product.price||0).toFixed(2)}</td>
+      <td>${lineTotal.toFixed(2)}</td>
+    `;
+    invBody.appendChild(tr);
+  });
+  document.getElementById('invSubtotal').textContent = subtotal.toFixed(2);
+
+  const discount = parseFloat(document.getElementById('discount').value)||0;
+  const transport = parseFloat(document.getElementById('transport').value)||0;
+  const grand = subtotal - discount + transport;
+  const paid = parseFloat(document.getElementById('paidAmount').value)||0;
+  const remaining = grand - paid;
+
+  document.getElementById('invLine1').textContent = subtotal.toFixed(2);
+  document.getElementById('invLine2').textContent = '- ' + discount.toFixed(2);
+  document.getElementById('invLine3').textContent = '+ ' + transport.toFixed(2);
+  document.getElementById('grandTotal').textContent = grand.toFixed(2) + ' جنيه';
+  document.getElementById('tafqit').textContent = 'فقط لا غير: ' + tafqit(grand) + ' جنيه مصري لا غير';
+  document.getElementById('remainingAmount').value = remaining.toFixed(2) + ' جنيه';
+  autoSaveState();
+}
+
+// ---------- DELIVERY NOTE (إذن تسليم مخازن) ----------
+function nextSerialNumber(key){
+  let n = parseInt(localStorage.getItem(key) || '0') + 1;
+  localStorage.setItem(key, String(n));
+  return String(n).padStart(4, '0');
+}
+
+function printInvoice(){
+  const invNo = nextSerialNumber('invoice_seq');
+  const clientName = document.getElementById('clientName').value || '';
+  const unit = document.getElementById('unit').value || '';
+  const phone = document.getElementById('phone').value || '';
+  const pdate = document.getElementById('pdate').value || '';
+
+  const rowsHtml = document.getElementById('invoiceBody').innerHTML;
+  const subtotal = document.getElementById('invSubtotal').textContent;
+  const discount = document.getElementById('invLine2').textContent;
+  const transport = document.getElementById('invLine3').textContent;
+  const grand = document.getElementById('grandTotal').textContent;
+  const remaining = document.getElementById('remainingAmount').value;
+  const paid = document.getElementById('paidAmount').value;
+  const tafqitText = document.getElementById('tafqit').textContent;
+
+  const html = `
+    <html dir="rtl" lang="ar"><head><meta charset="UTF-8"><title>فاتورة-${invNo}-${clientName||'عميل'}</title>
+    <style>
+      body{font-family:Tahoma,Arial,sans-serif;padding:30px;color:#1F2B27}
+      h1{font-size:20px;border-bottom:2px solid #1F2B27;padding-bottom:8px;display:flex;justify-content:space-between}
+      table{width:100%;border-collapse:collapse;margin-top:16px;font-size:14px}
+      th,td{border:1px solid #999;padding:8px;text-align:right}
+      th{background:#eee}
+      .meta{margin-top:10px;font-size:13px;display:flex;gap:30px;flex-wrap:wrap}
+      .totals{margin-top:16px;width:320px;margin-right:auto;font-size:14px}
+      .totals td{border:none;padding:4px 8px}
+      .grand{font-weight:700;font-size:17px;border-top:2px solid #1F2B27}
+      .tafqit{margin-top:10px;font-size:13px;border:1px dashed #999;padding:8px}
+      .sign{margin-top:60px;display:flex;justify-content:space-between}
+    </style></head>
+    <body>
+      <h1><span>فاتورة عميل — Home Blend</span><span>رقم: ${invNo}</span></h1>
+      <div style="font-size:11px;color:#999">${LICENSE.name}${currentRep?(" — المندوب: "+currentRep.name):""}</div>
+      <div class="meta">
+        <div>العميل: ${clientName}</div>
+        <div>الموقع/الوحدة: ${unit}</div>
+        <div>تليفون: ${phone}</div>
+        <div>التاريخ: ${pdate}</div>
+      </div>
+      <table>
+        <thead><tr><th>م</th><th>الصنف</th><th>الأماكن</th><th>الكمية (م²)</th><th>سعر المتر</th><th>الإجمالي</th></tr></thead>
+        <tbody>${rowsHtml}</tbody>
+      </table>
+      <table class="totals">
+        <tr><td>إجمالي الفاتورة</td><td>${subtotal}</td></tr>
+        <tr><td>خصم نقدي</td><td>${discount}</td></tr>
+        <tr><td>قيمة النقل</td><td>${transport}</td></tr>
+        <tr class="grand"><td>الصافي المستحق</td><td>${grand}</td></tr>
+        <tr><td>المبلغ المدفوع</td><td>${paid}</td></tr>
+        <tr><td>المتبقي</td><td>${remaining}</td></tr>
+      </table>
+      <div class="tafqit">${tafqitText}</div>
+      <div class="sign">
+        <div>توقيع المندوب: ______________</div>
+        <div>توقيع العميل: ______________</div>
+      </div>
+      <script>window.onload = () => window.print();<\/script>
+    </body></html>
+  `;
+  const w = window.open('', '_blank');
+  w.document.write(html);
+  w.document.close();
+}
+
+function printDeliveryNote(){
+  const dnNo = nextSerialNumber('delivery_seq');
+  const totals = {};
+  areas.forEach(a=>{
+    ['floor','wall'].forEach(kind=>{
+      const p = a.parts[kind];
+      if(!p) return;
+      let m2 = kind==='floor' ? p.length*p.width : 2*(p.length+p.width)*p.height;
+      if(m2<=0 || !p.productId) return;
+      const withWaste = m2 * (1+(p.waste||0)/100);
+      if(!totals[p.productId]) totals[p.productId] = {m2:0, rooms:[]};
+      totals[p.productId].m2 += withWaste;
+      totals[p.productId].rooms.push(displayName(a) + ' (' + (kind==='floor'?'أرضية':'حوائط') + ')');
+    });
+  });
+
+  let rows = '';
+  let serial = 0;
+  Object.entries(totals).forEach(([pid,t])=>{
+    const product = catalog.find(c=>c.id===pid);
+    if(!product) return;
+    serial++;
+    const boxes = Math.ceil(t.m2 / (product.m2box||1));
+    rows += `<tr>
+      <td>${serial}</td>
+      <td>${product.name}${product.code?(' — '+product.code):''}</td>
+      <td>${product.company||''}</td>
+      <td>${t.rooms.join('، ')}</td>
+      <td>${t.m2.toFixed(2)}</td>
+      <td>${boxes}</td>
+    </tr>`;
+  });
+
+  const clientName = document.getElementById('clientName').value || '';
+  const unit = document.getElementById('unit').value || '';
+  const pdate = document.getElementById('pdate').value || '';
+
+  const html = `
+    <html dir="rtl" lang="ar"><head><meta charset="UTF-8"><title>اذن-تسليم-${dnNo}-${clientName||'عميل'}</title>
+    <style>
+      body{font-family:Tahoma,Arial,sans-serif;padding:30px;color:#1F2B27}
+      h1{font-size:20px;border-bottom:2px solid #1F2B27;padding-bottom:8px;display:flex;justify-content:space-between}
+      table{width:100%;border-collapse:collapse;margin-top:16px;font-size:14px}
+      th,td{border:1px solid #999;padding:8px;text-align:right}
+      th{background:#eee}
+      .meta{margin-top:10px;font-size:13px}
+      .sign{margin-top:60px;display:flex;justify-content:space-between}
+    </style></head>
+    <body>
+      <h1><span>إذن تسليم مخازن — Home Blend</span><span>رقم: ${dnNo}</span></h1>
+      <div style="font-size:11px;color:#999">${LICENSE.name}${currentRep?(" — المندوب: "+currentRep.name):""}</div>
+      <div class="meta">
+        <div>العميل: ${clientName}</div>
+        <div>الموقع/الوحدة: ${unit}</div>
+        <div>التاريخ: ${pdate}</div>
+      </div>
+      <table>
+        <thead><tr><th>م</th><th>الصنف</th><th>الشركة</th><th>الفراغ / الاستخدام</th><th>الكمية (م²)</th><th>عدد الكراتين</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+      <div class="sign">
+        <div>توقيع أمين المخزن: ______________</div>
+        <div>توقيع المندوب: ______________</div>
+        <div>توقيع العميل: ______________</div>
+      </div>
+      <script>window.onload = () => window.print();<\/script>
+    </body></html>
+  `;
+  const w = window.open('', '_blank');
+  w.document.write(html);
+  w.document.close();
+}
+
+// ---------- ARABIC NUMBER TO WORDS (تفقيط) ----------
+function tafqit(num){
+  num = Math.round(num);
+  if(num===0) return 'صفر';
+  const ones=['','واحد','اثنان','ثلاثة','أربعة','خمسة','ستة','سبعة','ثمانية','تسعة'];
+  const teens=['عشرة','أحد عشر','اثنا عشر','ثلاثة عشر','أربعة عشر','خمسة عشر','ستة عشر','سبعة عشر','ثمانية عشر','تسعة عشر'];
+  const tens=['','عشرة','عشرون','ثلاثون','أربعون','خمسون','ستون','سبعون','ثمانون','تسعون'];
+  const hundreds=['','مائة','مائتان','ثلاثمائة','أربعمائة','خمسمائة','ستمائة','سبعمائة','ثمانمائة','تسعمائة'];
+
+  function threeDigits(n){
+    let parts=[];
+    const h=Math.floor(n/100), r=n%100;
+    if(h>0) parts.push(hundreds[h]);
+    if(r>0){
+      if(r<10) parts.push(ones[r]);
+      else if(r<20) parts.push(teens[r-10]);
+      else{
+        const t=Math.floor(r/10), o=r%10;
+        if(o>0) parts.push(ones[o]+' و'+tens[t]);
+        else parts.push(tens[t]);
+      }
+    }
+    return parts.join(' و');
+  }
+
+  const scales=[
+    {v:1000000000, s:'مليار'},
+    {v:1000000, s:'مليون'},
+    {v:1000, s:'ألف'},
+  ];
+
+  let n = num;
+  let words=[];
+  for(const sc of scales){
+    if(n>=sc.v){
+      const count = Math.floor(n/sc.v);
+      n = n % sc.v;
+      if(count===1) words.push(sc.s);
+      else if(count===2) words.push(sc.s+'ان');
+      else words.push(threeDigits(count)+' '+sc.s+(count>=3&&count<=10?'':(sc.s==='ألف'?'':'')));
+    }
+  }
+  if(n>0) words.push(threeDigits(n));
+  return words.join(' و');
+}
+
+// ---------- SAVE / LOAD (localStorage) ----------
+let currentProjectId = null;
+
+function exportBackup(){
+  const allProjects = {};
+  Object.keys(localStorage).forEach(k=>{
+    if(k.startsWith('tile_project_') || k === 'tile_autosave' || k==='invoice_seq' || k==='delivery_seq'){
+      allProjects[k] = localStorage.getItem(k);
+    }
+  });
+  const blob = new Blob([JSON.stringify(allProjects, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const dateStr = new Date().toISOString().slice(0,10);
+  a.href = url;
+  a.download = `نسخة-احتياطية-حاسبة-السيراميك-${dateStr}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function importBackup(event){
+  const file = event.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = (e)=>{
+    try{
+      const data = JSON.parse(e.target.result);
+      let count = 0;
+      Object.keys(data).forEach(k=>{
+        localStorage.setItem(k, data[k]);
+        count++;
+      });
+      alert('تم استعادة النسخة الاحتياطية بنجاح (' + count + ' عنصر). سيتم إعادة تحميل الصفحة الآن.');
+      location.reload();
+    }catch(err){
+      alert('تعذرت قراءة ملف النسخة الاحتياطية: ' + err.message);
+    }
+    event.target.value = '';
+  };
+  reader.readAsText(file);
+}
+
+function newClientProject(){
+  if(!confirm('هل تريد بدء ملف عميل جديد؟ سيتم مسح بيانات الفراغات والعميل الحالي (الكتالوج يفضل زي ما هو).')) return;
+  currentProjectId = null;
+  document.getElementById('clientName').value = '';
+  document.getElementById('unit').value = '';
+  document.getElementById('phone').value = '';
+  document.getElementById('pdate').value = new Date().toISOString().slice(0,10);
+  document.getElementById('discount').value = 0;
+  document.getElementById('transport').value = 0;
+  document.getElementById('paidAmount').value = 0;
+  areas = [];
+  addArea(); addArea();
+  calculate();
+}
+
+function saveProject(){
+  const name = document.getElementById('clientName').value.trim();
+  if(!name){
+    alert('اكتب اسم العميل أولًا في أعلى الصفحة قبل الحفظ، عشان تقدر ترجع لملفه بسهولة لاحقًا.');
+    return;
+  }
+  const data = {
+    clientName: name,
+    unit: document.getElementById('unit').value,
+    phone: document.getElementById('phone').value,
+    pdate: document.getElementById('pdate').value,
+    discount: document.getElementById('discount').value,
+    transport: document.getElementById('transport').value,
+    paidAmount: document.getElementById('paidAmount').value,
+    catalog, areas,
+    savedAt: Date.now()
+  };
+  if(!currentProjectId){
+    currentProjectId = 'proj_' + cid();
+  }
+  try{
+    localStorage.setItem('tile_project_' + currentProjectId, JSON.stringify(data));
+    alert('تم حفظ/تحديث ملف العميل: ' + name);
+  }catch(e){ alert('تعذر الحفظ: ' + e.message); }
+}
+
+function openProjectsList(){
+  const keys = Object.keys(localStorage).filter(k=>k.startsWith('tile_project_'));
+  const body = document.getElementById('projectsListBody');
+  if(!keys.length){
+    body.innerHTML = '<div class="note">لا توجد ملفات عملاء محفوظة على هذا الجهاز بعد.</div>';
+  } else {
+    const rows = keys.map(k=>{
+      const data = JSON.parse(localStorage.getItem(k));
+      const projId = k.replace('tile_project_','');
+      const dateStr = data.savedAt ? new Date(data.savedAt).toLocaleString('ar-EG') : '';
+      return {projId, data, dateStr};
+    }).sort((a,b)=> (b.data.savedAt||0) - (a.data.savedAt||0));
+
+    body.innerHTML = rows.map(r => `
+      <div style="border:1px solid var(--line);padding:10px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <div style="font-weight:700">${r.data.clientName}</div>
+          <div class="eyebrow">${r.data.unit||''} — آخر تحديث: ${r.dateStr}</div>
+        </div>
+        <div style="display:flex;gap:6px">
+          <button class="btn-primary btn-sm" onclick="loadProject('${r.projId}')">فتح</button>
+          <button class="btn-danger btn-sm" onclick="deleteProject('${r.projId}')">حذف</button>
+        </div>
+      </div>
+    `).join('');
+  }
+  document.getElementById('projectsModal').style.display = 'flex';
+}
+function closeProjectsList(){
+  document.getElementById('projectsModal').style.display = 'none';
+}
+
+function loadProject(projId){
+  const raw = localStorage.getItem('tile_project_' + projId);
+  if(!raw) return;
+  const data = JSON.parse(raw);
+  currentProjectId = projId;
+  document.getElementById('clientName').value = data.clientName||'';
+  document.getElementById('unit').value = data.unit||'';
+  document.getElementById('phone').value = data.phone||'';
+  document.getElementById('pdate').value = data.pdate||'';
+  document.getElementById('discount').value = data.discount||0;
+  document.getElementById('transport').value = data.transport||0;
+  document.getElementById('paidAmount').value = data.paidAmount||0;
+  catalog = data.catalog || catalog;
+  areas = data.areas || [];
+  renderCatalog(); renderAreas(); calculate();
+  closeProjectsList();
+  alert('تم فتح ملف العميل: ' + data.clientName);
+}
+
+function deleteProject(projId){
+  const raw = localStorage.getItem('tile_project_' + projId);
+  const data = raw ? JSON.parse(raw) : null;
+  if(!confirm('هل أنت متأكد من حذف ملف العميل' + (data?' "'+data.clientName+'"':'') + '؟')) return;
+  localStorage.removeItem('tile_project_' + projId);
+  if(currentProjectId === projId) currentProjectId = null;
+  openProjectsList();
+}
+
+// ---------- 3D VIEWER (simplified) ----------
+function getPointerNDC(event, el){
+  const rect = el.getBoundingClientRect();
+  const clientX = event.touches ? event.touches[0].clientX : event.clientX;
+  const clientY = event.touches ? event.touches[0].clientY : event.clientY;
+  return {
+    x: ((clientX - rect.left) / rect.width) * 2 - 1,
+    y: -((clientY - rect.top) / rect.height) * 2 + 1
+  };
+}
+
+function setupDragEvents(el){
+  function onDown(event){
+    ensureDragTools();
+    if(!dragRaycaster) return;
+    const ndc = getPointerNDC(event, el);
+    dragRaycaster.setFromCamera(ndc, camera);
+    const hits = dragRaycaster.intersectObjects(draggableFixtures);
+    if(hits.length){
+      dragTarget = hits[0].object;
+      dragPlane.set(new THREE.Vector3(0,1,0), -dragTarget.position.y);
+      event.preventDefault();
+    }
+  }
+  function onMove(event){
+    if(!dragTarget || !dragRaycaster) return;
+    const ndc = getPointerNDC(event, el);
+    dragRaycaster.setFromCamera(ndc, camera);
+    const point = new THREE.Vector3();
+    if(dragRaycaster.ray.intersectPlane(dragPlane, point)){
+      const {L, W} = currentRoomBounds;
+      const x = Math.max(-L/2+0.2, Math.min(L/2-0.2, point.x));
+      const z = Math.max(-W/2+0.2, Math.min(W/2-0.2, point.z));
+      dragTarget.position.x = x;
+      dragTarget.position.z = z;
+    }
+    event.preventDefault();
+  }
+  function onUp(){
+    if(dragTarget){
+      const area = dragTarget.userData.area;
+      const name = dragTarget.userData.name;
+      if(!area.fixtures) area.fixtures = {};
+      area.fixtures[name] = {x: dragTarget.position.x, z: dragTarget.position.z};
+      autoSaveState();
+    }
+    dragTarget = null;
+  }
+  el.addEventListener('mousedown', onDown);
+  el.addEventListener('touchstart', onDown, {passive:false});
+  window.addEventListener('mousemove', onMove);
+  window.addEventListener('touchmove', onMove, {passive:false});
+  window.addEventListener('mouseup', onUp);
+  window.addEventListener('touchend', onUp);
+}
+
+function initViewer(){
+  const el = document.getElementById('viewer');
+  scene = new THREE.Scene();
+  scene.background = new THREE.Color(0xdfe6e2);
+  camera = new THREE.PerspectiveCamera(45, el.clientWidth/el.clientHeight, 0.1, 100);
+  camera.position.set(3.2, 3, 4.2);
+  camera.lookAt(0,0.8,0);
+  renderer = new THREE.WebGLRenderer({antialias:true});
+  renderer.setSize(el.clientWidth, el.clientHeight);
+  el.innerHTML=''; el.appendChild(renderer.domElement);
+
+  const amb = new THREE.AmbientLight(0xffffff, 0.7); scene.add(amb);
+  const dir = new THREE.DirectionalLight(0xffffff, 0.6);
+  dir.position.set(4,6,3); scene.add(dir);
+
+  roomGroup = new THREE.Group();
+  scene.add(roomGroup);
+  setupDragEvents(renderer.domElement);
+  animate();
+}
+
+function loadTiledTexture(product, roomMeters, onReady){
+  if(product.image){
+    const loader = new THREE.TextureLoader();
+    loader.crossOrigin = 'anonymous';
+    loader.load(
+      product.image,
+      (tex)=>{
+        tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+        const repX = Math.max(1, Math.round(roomMeters.x / ((product.l||60)/100)));
+        const repY = Math.max(1, Math.round(roomMeters.y / ((product.w||60)/100)));
+        tex.repeat.set(repX, repY);
+        onReady(tex);
+      },
+      undefined,
+      ()=>{ onReady(tileTexture(product.color||'#DDD', product.l, product.w, roomMeters)); }
+    );
+  } else {
+    onReady(tileTexture(product.color||'#DDD', product.l, product.w, roomMeters));
+  }
+}
+
+function tileTexture(colorHex, tileLcm, tileWcm, roomMeters){
+  const c = document.createElement('canvas');
+  c.width = 512; c.height = 512;
+  const ctx = c.getContext('2d');
+  ctx.fillStyle = colorHex; ctx.fillRect(0,0,512,512);
+  // grout lines based on tile proportions
+  const tl = Math.max(tileLcm,10), tw = Math.max(tileWcm,10);
+  const cols = Math.max(1, Math.round((roomMeters.x*100)/tl));
+  const rows = Math.max(1, Math.round((roomMeters.y*100)/tw));
+  ctx.strokeStyle = 'rgba(0,0,0,0.25)';
+  ctx.lineWidth = 2;
+  for(let i=0;i<=cols;i++){ const x=i*512/cols; ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,512); ctx.stroke(); }
+  for(let j=0;j<=rows;j++){ const y=j*512/rows; ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(512,y); ctx.stroke(); }
+  // subtle noise
+  for(let i=0;i<400;i++){
+    ctx.fillStyle = 'rgba(255,255,255,'+(Math.random()*0.05)+')';
+    ctx.fillRect(Math.random()*512, Math.random()*512, 20,20);
+  }
+  const tex = new THREE.CanvasTexture(c);
+  return tex;
+}
+
+function renderViewer(){
+  if(!renderer) initViewer();
+  while(roomGroup.children.length) roomGroup.remove(roomGroup.children[0]);
+
+  const roomId = document.getElementById('viewerRoomSelect').value;
+  const area = areas.find(a=>a.id===roomId) || areas[0];
+  if(!area){ return; }
+
+  const L = area.parts.floor.length || area.parts.wall.length || 2.5;
+  const W = area.parts.floor.width || area.parts.wall.width || 2;
+  const H = area.parts.wall.height || 2.4;
+
+  const floorProduct = catalog.find(c=>c.id===area.parts.floor.productId) || catalog[0];
+  const wallProduct = catalog.find(c=>c.id===area.parts.wall.productId) || catalog[0];
+
+  // floor
+  const floorMat = new THREE.MeshStandardMaterial({color: floorProduct.color||'#DDD'});
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(L,W), floorMat);
+  floor.rotation.x = -Math.PI/2;
+  roomGroup.add(floor);
+  loadTiledTexture(floorProduct, {x:L,y:W}, (tex)=>{ floorMat.map = tex; floorMat.needsUpdate = true; });
+
+  // back wall
+  const backMat = new THREE.MeshStandardMaterial({color: wallProduct.color||'#DDD'});
+  const backWall = new THREE.Mesh(new THREE.PlaneGeometry(L,H), backMat);
+  backWall.position.set(0, H/2, -W/2);
+  roomGroup.add(backWall);
+  loadTiledTexture(wallProduct, {x:L,y:H}, (tex)=>{ backMat.map = tex; backMat.needsUpdate = true; });
+
+  // side wall
+  const sideMat = new THREE.MeshStandardMaterial({color: wallProduct.color||'#DDD'});
+  const sideWall = new THREE.Mesh(new THREE.PlaneGeometry(W,H), sideMat);
+  sideWall.rotation.y = Math.PI/2;
+  sideWall.position.set(-L/2, H/2, 0);
+  roomGroup.add(sideWall);
+  loadTiledTexture(wallProduct, {x:W,y:H}, (tex)=>{ sideMat.map = tex; sideMat.needsUpdate = true; });
+
+  // draggable fixtures per room type
+  draggableFixtures = [];
+  currentRoomBounds = {L, W};
+  if(!area.fixtures) area.fixtures = {};
+
+  function addFixture(name, geo, color, defaultX, defaultZ, y){
+    const pos = area.fixtures[name] || {x:defaultX, z:defaultZ};
+    const mesh = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({color}));
+    mesh.position.set(pos.x, y, pos.z);
+    mesh.userData = {name, area, y};
+    roomGroup.add(mesh);
+    draggableFixtures.push(mesh);
+    return mesh;
+  }
+
+  if(area.name.includes('حمام')){
+    addFixture('توالت', new THREE.BoxGeometry(0.4,0.4,0.6), 0xffffff, L/2-0.35, -W/2+0.4, 0.2);
+    addFixture('حوض', new THREE.BoxGeometry(0.5,0.15,0.4), 0xffffff, -L/2+0.4, -W/2+0.3, 0.75);
+    addFixture('بانيو', new THREE.BoxGeometry(1.5,0.5,0.75), 0xf0f0f0, 0, W/2-0.45, 0.25);
+  }
+  if(area.name.includes('مطبخ')){
+    addFixture('دولاب 1', new THREE.BoxGeometry(L*0.35,0.9,0.6), 0xdedede, -L*0.2, -W/2+0.3, 0.45);
+    addFixture('دولاب 2', new THREE.BoxGeometry(L*0.35,0.9,0.6), 0xd0d0d0, L*0.2, -W/2+0.3, 0.45);
+  }
+
+  camera.position.set(L*0.9, H*1.1, W*1.4);
+  camera.lookAt(0,H*0.4,0);
+}
+
+function rotateViewer(dir){
+  rotY += dir*0.4;
+  roomGroup.rotation.y = rotY;
+}
+function animate(){
+  requestAnimationFrame(animate);
+  renderer.render(scene, camera);
+}
+
+// ---------- LICENSE GATE ----------
+let currentRep = null;
+
+function checkLicense(){
+  const username = document.getElementById('licenseUsernameInput').value.trim();
+  const password = document.getElementById('licensePasswordInput').value;
+  const rep = SALES_REPS.find(r => r.username===username && r.password===password);
+  if(rep){
+    currentRep = rep;
+    try{
+      sessionStorage.setItem('license_unlocked', '1');
+      sessionStorage.setItem('current_rep', JSON.stringify(rep));
+    }catch(e){
+      // بعض المتصفحات المصغّرة (زي متصفح واتساب الداخلي) بتمنع sessionStorage
+      // بنكمل عادي، بس هيضطر يسجل دخول تاني لو أعاد فتح الصفحة
+    }
+    unlockApp();
+  } else {
+    document.getElementById('licenseError').style.display = 'block';
+  }
+}
+function unlockApp(){
+  document.getElementById('lockScreen').style.display = 'none';
+  document.getElementById('appRoot').style.display = 'block';
+  document.getElementById('licenseNameHeader').textContent = LICENSE.name + ' — ' + (currentRep?currentRep.name:'');
+  document.getElementById('licenseNameFooter').textContent = 'مرخّص لـ: ' + LICENSE.name + (currentRep?(' — دخول: '+currentRep.name):'');
+  document.getElementById('currentRepDisplay').textContent = currentRep ? ('👤 '+currentRep.name) : '';
+  initApp();
+}
+
+// ---------- INIT ----------
+window.addEventListener('DOMContentLoaded', ()=>{
+  document.getElementById('licenseNameDisplay').textContent = LICENSE.name;
+  try{
+    if(sessionStorage.getItem('license_unlocked')==='1'){
+      try{ currentRep = JSON.parse(sessionStorage.getItem('current_rep')); }catch(e){}
+      unlockApp();
+    }
+  }catch(e){
+    // sessionStorage غير متاح في هذا المتصفح، هيحتاج يسجل دخول عادي من غير مشاكل
+  }
+});
+
+function initApp(){
+  document.getElementById('pdate').value = new Date().toISOString().slice(0,10);
+  const restored = tryRestoreAutoSave();
+  renderCatalog();
+  if(restored && areas.length){
+    renderAreas();
+  } else {
+    addArea();
+    addArea();
+  }
+  calculate();
+}
+
+</script>
+</body>
+</html>
