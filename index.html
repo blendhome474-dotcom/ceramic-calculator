@@ -242,8 +242,10 @@
         <input type="file" id="excelInput" accept=".xlsx,.xls" style="display:none" onchange="importExcel(event)">
         <button class="btn-ghost btn-sm" onclick="document.getElementById('bulkImgInput').click()">📸 رفع صور الأصناف دفعة واحدة</button>
         <input type="file" id="bulkImgInput" accept="image/*" multiple style="display:none" onchange="bulkUploadImages(event)">
+        <button class="btn-primary btn-sm" onclick="syncCentralCatalog()">🔄 تحديث الأسعار من المصدر المركزي</button>
       </div>
-      <div class="note">الاستيراد بيقرأ أعمدة: كود الصنف، اسم الصنف، فئة المقاس، سعر البيع، اسم الشركة، الكمية بالكرتونة — ويحسب سعر المتر تلقائيًا (سعر البيع ÷ الكمية بالكرتونة). ترتيب الأعمدة في الملف مش مهم، الأداة بتتعرف عليها بالاسم مش بالترتيب. لرفع الصور: نزّل صور المنتجات على جهازك وسمّي كل ملف بنفس كود الصنف بالظبط (مثلاً CGF100.jpg)، وبعدين دوس "رفع صور الأصناف دفعة واحدة" واختارهم كلهم مرة واحدة.</div>
+      <div class="note" id="lastSyncNote"></div>
+      <div class="note">الاستيراد بيقرأ أعمدة: كود الصنف، اسم الصنف، فئة المقاس، سعر البيع، اسم الشركة، الكمية بالكرتونة — ويحسب سعر المتر تلقائيًا (سعر البيع ÷ الكمية بالكرتونة). ترتيب الأعمدة في الملف مش مهم، الأداة بتتعرف عليها بالاسم مش بالترتيب. لرفع الصور: نزّل صور المنتجات على جهازك وسمّي كل ملف بنفس كود الصنف بالظبط (مثلاً CGF100.jpg)، وبعدين دوس "رفع صور الأصناف دفعة واحدة" واختارهم كلهم مرة واحدة. زرار "تحديث الأسعار من المصدر المركزي" بيسحب آخر نسخة أسعار من ملف واحد على GitHub — محتاج إنترنت وقت الضغط بس، وبعدها البيانات تفضل محفوظة وتشتغل أوفلاين عادي.</div>
     </div>
 
     <div class="card" id="viewer-wrap">
@@ -416,6 +418,55 @@ function clearCatalog(){
   catalog = [];
   renderCatalog(); calculate();
   alert('تم مسح الكتالوج. تقدر تستورد ملف الإكسيل تاني دلوقتي من غير تكرار.');
+}
+
+function syncCentralCatalog(){
+  const noteEl = document.getElementById('lastSyncNote');
+  noteEl.textContent = 'جاري السحب من المصدر المركزي...';
+  fetch('./catalog.json', {cache:'no-store'})
+    .then(res=>{
+      if(!res.ok) throw new Error('لم يتم العثور على ملف الأسعار (catalog.json) على السيرفر.');
+      return res.json();
+    })
+    .then(data=>{
+      if(!Array.isArray(data)) throw new Error('صيغة ملف الأسعار غير صحيحة.');
+      let added = 0, updated = 0;
+      data.forEach(item=>{
+        if(!item.code || !item.name) return;
+        const existing = catalog.find(c => c.code && c.code.trim() === String(item.code).trim());
+        if(existing){
+          existing.name = item.name;
+          existing.company = item.company||'';
+          existing.use = item.use||'floor_wall';
+          existing.l = parseFloat(item.l)||existing.l;
+          existing.w = parseFloat(item.w)||existing.w;
+          existing.m2box = parseFloat(item.m2box)||existing.m2box;
+          existing.priceCarton = parseFloat(item.priceCarton)||0;
+          existing.price = parseFloat(item.price)||0;
+          if(item.image) existing.image = item.image;
+          updated++;
+        } else {
+          catalog.push({
+            id: cid(), name: item.name, code: String(item.code),
+            company: item.company||'', use: item.use||'floor_wall',
+            l: parseFloat(item.l)||60, w: parseFloat(item.w)||60,
+            m2box: parseFloat(item.m2box)||1,
+            priceCarton: parseFloat(item.priceCarton)||0,
+            price: parseFloat(item.price)||0,
+            image: item.image||'', color: randColor()
+          });
+          added++;
+        }
+      });
+      renderCatalog(); calculate();
+      const now = new Date().toLocaleString('ar-EG');
+      noteEl.textContent = `آخر تحديث أسعار: ${now} — (${added} صنف جديد، ${updated} صنف محدّث)`;
+      localStorage.setItem('last_price_sync', now);
+    })
+    .catch(err=>{
+      noteEl.textContent = 'فشل التحديث: ' + err.message;
+      alert('فشل التحديث: ' + err.message + '\n\nتأكد إن عندك اتصال إنترنت، وإن التطبيق مفتوح من الرابط المباشر (مش نسخة APK قديمة أو ملف محلي).');
+    });
 }
 
 function addCatalogItem(){
@@ -1406,6 +1457,8 @@ function initApp(){
   document.getElementById('pdate').value = new Date().toISOString().slice(0,10);
   const restored = tryRestoreAutoSave();
   renderCatalog();
+  const lastSync = localStorage.getItem('last_price_sync');
+  if(lastSync) document.getElementById('lastSyncNote').textContent = 'آخر تحديث أسعار: ' + lastSync;
   if(restored && areas.length){
     renderAreas();
   } else {
