@@ -1,0 +1,26 @@
+[
+  {
+    "code": "CGF100",
+    "name": "GLOSSY CERAMIC فرز 1",
+    "company": "Ceramica Cleopatra",
+    "use": "floor_wall",
+    "l": 121,
+    "w": 60.5,
+    "m2box": 1.4641,
+    "priceCarton": 549,
+    "price": 375,
+    "image": ""
+  },
+  {
+    "code": "GMI1010",
+    "name": "م.انكونا بيج دارك",
+    "company": "Ceramic Gemma",
+    "use": "floor_wall",
+    "l": 120,
+    "w": 60,
+    "m2box": 1.215,
+    "priceCarton": 919,
+    "price": 756,
+    "image": ""
+  }
+]
