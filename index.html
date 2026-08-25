@@ -207,6 +207,8 @@
     <button class="header-btn btn-sm" onclick="document.getElementById('backupInput').click()">⬆️ استعادة نسخة</button>
     <input type="file" id="backupInput" accept=".json" style="display:none" onchange="importBackup(event)">
     <button class="btn-primary btn-sm" onclick="printInvoice()">🖨️ طباعة الفاتورة</button>
+    <button class="header-btn btn-sm" onclick="openInvoicesLog()">🧾 سجل الفواتير</button>
+    <button class="header-btn btn-sm" onclick="exportSalesReport()">📊 تقرير مبيعات Excel</button>
   </div>
 </header>
 
@@ -320,6 +322,16 @@
 
 </div>
 
+<div id="invoicesLogModal" style="display:none;position:fixed;inset:0;background:rgba(31,43,39,0.85);z-index:999;align-items:center;justify-content:center;">
+  <div style="background:var(--card);max-width:720px;width:94%;max-height:80vh;overflow-y:auto;border-radius:2px;padding:20px;border:1px solid var(--line)">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+      <h2 style="margin:0;border:none;padding:0">سجل الفواتير المطبوعة</h2>
+      <button class="btn-ghost btn-sm" onclick="closeInvoicesLog()">✕ إغلاق</button>
+    </div>
+    <div id="invoicesLogBody"></div>
+  </div>
+</div>
+
 <div id="projectsModal" style="display:none;position:fixed;inset:0;background:rgba(31,43,39,0.85);z-index:999;align-items:center;justify-content:center;">
   <div style="background:var(--card);max-width:520px;width:92%;max-height:80vh;overflow-y:auto;border-radius:2px;padding:20px;border:1px solid var(--line)">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
@@ -339,8 +351,7 @@ const LICENSE = {
 // أضف مندوب جديد بسطر هنا: { username: 'اسم الدخول', password: 'كلمة المرور', name: 'الاسم الظاهر' }
 const SALES_REPS = [
   { username: 'admin',   password: 'homeblend2026', name: 'الإدارة' },
-  { username: 'rep1',    password: 'rep1pass',      name: 'مندوب 1' },
-  { username: 'rep2',    password: 'rep2pass',      name: 'مندوب 2' },
+  { username: 'rep1',    password: 'rep1pass',       name: 'مندوب 1' },
 ];
 
 // ---------- STATE ----------
@@ -889,24 +900,45 @@ function nextSerialNumber(key){
   return String(n).padStart(4, '0');
 }
 
-function printInvoice(){
-  const invNo = nextSerialNumber('invoice_seq');
+function buildInvoiceRecord(invNo){
   const clientName = document.getElementById('clientName').value || '';
   const unit = document.getElementById('unit').value || '';
   const phone = document.getElementById('phone').value || '';
   const pdate = document.getElementById('pdate').value || '';
-
   const rowsHtml = document.getElementById('invoiceBody').innerHTML;
-  const subtotal = document.getElementById('invSubtotal').textContent;
-  const discount = document.getElementById('invLine2').textContent;
-  const transport = document.getElementById('invLine3').textContent;
-  const grand = document.getElementById('grandTotal').textContent;
-  const remaining = document.getElementById('remainingAmount').value;
-  const paid = document.getElementById('paidAmount').value;
+  const subtotalText = document.getElementById('invSubtotal').textContent;
+  const discountText = document.getElementById('invLine2').textContent;
+  const transportText = document.getElementById('invLine3').textContent;
+  const grandText = document.getElementById('grandTotal').textContent;
+  const remainingText = document.getElementById('remainingAmount').value;
+  const paidText = document.getElementById('paidAmount').value;
   const tafqitText = document.getElementById('tafqit').textContent;
+  return {
+    invNo, date: pdate, savedAt: Date.now(),
+    clientName, unit, phone,
+    repName: currentRep ? currentRep.name : '',
+    rowsHtml, subtotalText, discountText, transportText, grandText, tafqitText,
+    subtotalNum: parseFloat(subtotalText)||0,
+    grandNum: parseFloat(grandText)||0,
+    paidNum: parseFloat(paidText)||0,
+    remainingNum: parseFloat(remainingText)||0,
+  };
+}
 
+function saveInvoiceRecord(record){
+  let log = [];
+  try{ log = JSON.parse(localStorage.getItem('invoices_log')||'[]'); }catch(e){}
+  log.push(record);
+  try{ localStorage.setItem('invoices_log', JSON.stringify(log)); }catch(e){}
+}
+
+function getInvoicesLog(){
+  try{ return JSON.parse(localStorage.getItem('invoices_log')||'[]'); }catch(e){ return []; }
+}
+
+function renderInvoiceWindow(record){
   const html = `
-    <html dir="rtl" lang="ar"><head><meta charset="UTF-8"><title>فاتورة-${invNo}-${clientName||'عميل'}</title>
+    <html dir="rtl" lang="ar"><head><meta charset="UTF-8"><title>فاتورة-${record.invNo}-${record.clientName||'عميل'}</title>
     <style>
       body{font-family:Tahoma,Arial,sans-serif;padding:30px;color:#1F2B27}
       h1{font-size:20px;border-bottom:2px solid #1F2B27;padding-bottom:8px;display:flex;justify-content:space-between}
@@ -921,27 +953,27 @@ function printInvoice(){
       .sign{margin-top:60px;display:flex;justify-content:space-between}
     </style></head>
     <body>
-      <h1><span>فاتورة عميل — Home Blend</span><span>رقم: ${invNo}</span></h1>
-      <div style="font-size:11px;color:#999">${LICENSE.name}${currentRep?(" — المندوب: "+currentRep.name):""}</div>
+      <h1><span>فاتورة عميل — Home Blend</span><span>رقم: ${record.invNo}</span></h1>
+      <div style="font-size:11px;color:#999">${LICENSE.name}${record.repName?(" — المندوب: "+record.repName):""}</div>
       <div class="meta">
-        <div>العميل: ${clientName}</div>
-        <div>الموقع/الوحدة: ${unit}</div>
-        <div>تليفون: ${phone}</div>
-        <div>التاريخ: ${pdate}</div>
+        <div>العميل: ${record.clientName}</div>
+        <div>الموقع/الوحدة: ${record.unit}</div>
+        <div>تليفون: ${record.phone}</div>
+        <div>التاريخ: ${record.date}</div>
       </div>
       <table>
         <thead><tr><th>م</th><th>الصنف</th><th>الأماكن</th><th>الكمية (م²)</th><th>سعر المتر</th><th>الإجمالي</th></tr></thead>
-        <tbody>${rowsHtml}</tbody>
+        <tbody>${record.rowsHtml}</tbody>
       </table>
       <table class="totals">
-        <tr><td>إجمالي الفاتورة</td><td>${subtotal}</td></tr>
-        <tr><td>خصم نقدي</td><td>${discount}</td></tr>
-        <tr><td>قيمة النقل</td><td>${transport}</td></tr>
-        <tr class="grand"><td>الصافي المستحق</td><td>${grand}</td></tr>
-        <tr><td>المبلغ المدفوع</td><td>${paid}</td></tr>
-        <tr><td>المتبقي</td><td>${remaining}</td></tr>
+        <tr><td>إجمالي الفاتورة</td><td>${record.subtotalText}</td></tr>
+        <tr><td>خصم نقدي</td><td>${record.discountText}</td></tr>
+        <tr><td>قيمة النقل</td><td>${record.transportText}</td></tr>
+        <tr class="grand"><td>الصافي المستحق</td><td>${record.grandText}</td></tr>
+        <tr><td>المبلغ المدفوع</td><td>${record.paidNum.toFixed(2)}</td></tr>
+        <tr><td>المتبقي</td><td>${record.remainingNum.toFixed(2)}</td></tr>
       </table>
-      <div class="tafqit">${tafqitText}</div>
+      <div class="tafqit">${record.tafqitText}</div>
       <div class="sign">
         <div>توقيع المندوب: ______________</div>
         <div>توقيع العميل: ______________</div>
@@ -953,6 +985,74 @@ function printInvoice(){
   w.document.write(html);
   w.document.close();
 }
+
+function printInvoice(){
+  const invNo = nextSerialNumber('invoice_seq');
+  const record = buildInvoiceRecord(invNo);
+  saveInvoiceRecord(record);
+  renderInvoiceWindow(record);
+}
+
+function reprintInvoice(invNo){
+  const log = getInvoicesLog();
+  const record = log.find(r=>r.invNo===invNo);
+  if(!record){ alert('لم يتم العثور على الفاتورة رقم ' + invNo); return; }
+  renderInvoiceWindow(record);
+}
+
+function openInvoicesLog(){
+  const log = getInvoicesLog().slice().sort((a,b)=> (b.savedAt||0)-(a.savedAt||0));
+  const body = document.getElementById('invoicesLogBody');
+  if(!log.length){
+    body.innerHTML = '<div class="note">لا توجد فواتير مطبوعة بعد على هذا الجهاز.</div>';
+  } else {
+    body.innerHTML = `
+      <table>
+        <thead><tr><th>رقم</th><th>العميل</th><th>المندوب</th><th>التاريخ</th><th>الإجمالي</th><th>المتبقي</th><th></th></tr></thead>
+        <tbody>
+          ${log.map(r=>`
+            <tr>
+              <td>${r.invNo}</td>
+              <td>${r.clientName}</td>
+              <td>${r.repName}</td>
+              <td>${r.date}</td>
+              <td>${r.grandNum.toFixed(2)}</td>
+              <td>${r.remainingNum.toFixed(2)}</td>
+              <td><button class="btn-primary btn-sm" onclick="reprintInvoice('${r.invNo}')">إعادة طباعة</button></td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    `;
+  }
+  document.getElementById('invoicesLogModal').style.display = 'flex';
+}
+function closeInvoicesLog(){
+  document.getElementById('invoicesLogModal').style.display = 'none';
+}
+
+function exportSalesReport(){
+  const log = getInvoicesLog();
+  if(!log.length){ alert('لا توجد فواتير مسجلة بعد لتصديرها.'); return; }
+  const rows = log.map(r => ({
+    'رقم الفاتورة': r.invNo,
+    'التاريخ': r.date,
+    'العميل': r.clientName,
+    'الموقع/الوحدة': r.unit,
+    'تليفون': r.phone,
+    'المندوب': r.repName,
+    'إجمالي الفاتورة': r.subtotalNum,
+    'الصافي المستحق': r.grandNum,
+    'المبلغ المدفوع': r.paidNum,
+    'المتبقي على العميل': r.remainingNum,
+  }));
+  const ws = XLSX.utils.json_to_sheet(rows);
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'تقرير المبيعات');
+  const dateStr = new Date().toISOString().slice(0,10);
+  XLSX.writeFile(wb, `تقرير-مبيعات-${dateStr}.xlsx`);
+}
+
 
 function printDeliveryNote(){
   const dnNo = nextSerialNumber('delivery_seq');
