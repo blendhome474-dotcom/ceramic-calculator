@@ -245,6 +245,7 @@
         <button class="btn-ghost btn-sm" onclick="document.getElementById('bulkImgInput').click()">📸 رفع صور الأصناف دفعة واحدة</button>
         <input type="file" id="bulkImgInput" accept="image/*" multiple style="display:none" onchange="bulkUploadImages(event)">
         <button class="btn-primary btn-sm" onclick="syncCentralCatalog()">🔄 تحديث الأسعار من المصدر المركزي</button>
+        <button class="header-btn btn-sm" style="color:var(--slate);border-color:var(--line)" onclick="exportCentralCatalog()">📤 تصدير الكتالوج الحالي كملف مركزي (catalog.json)</button>
       </div>
       <div class="note" id="lastSyncNote"></div>
       <div class="note">الاستيراد بيقرأ أعمدة: كود الصنف، اسم الصنف، فئة المقاس، سعر البيع، اسم الشركة، الكمية بالكرتونة — ويحسب سعر المتر تلقائيًا (سعر البيع ÷ الكمية بالكرتونة). ترتيب الأعمدة في الملف مش مهم، الأداة بتتعرف عليها بالاسم مش بالترتيب. لرفع الصور: نزّل صور المنتجات على جهازك وسمّي كل ملف بنفس كود الصنف بالظبط (مثلاً CGF100.jpg)، وبعدين دوس "رفع صور الأصناف دفعة واحدة" واختارهم كلهم مرة واحدة. زرار "تحديث الأسعار من المصدر المركزي" بيسحب آخر نسخة أسعار من ملف واحد على GitHub — محتاج إنترنت وقت الضغط بس، وبعدها البيانات تفضل محفوظة وتشتغل أوفلاين عادي.</div>
@@ -434,6 +435,30 @@ function clearCatalog(){
   catalog = [];
   renderCatalog(); calculate();
   alert('تم مسح الكتالوج. تقدر تستورد ملف الإكسيل تاني دلوقتي من غير تكرار.');
+}
+
+function exportCentralCatalog(){
+  if(!catalog.length){ alert('الكتالوج فاضي حاليًا، مفيش حاجة تصدرها.'); return; }
+  const exportData = catalog.map(c => ({
+    code: c.code || '',
+    name: c.name || '',
+    company: c.company || '',
+    use: c.use || 'floor_wall',
+    l: c.l || 60,
+    w: c.w || 60,
+    m2box: c.m2box || 1,
+    priceCarton: c.priceCarton || 0,
+    price: c.price || 0,
+    image: c.image && c.image.startsWith('http') ? c.image : ''
+  }));
+  const blob = new Blob([JSON.stringify(exportData, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'catalog.json';
+  a.click();
+  URL.revokeObjectURL(url);
+  alert('تم تصدير ' + exportData.length + ' صنف في ملف catalog.json.\n\nالخطوة الجاية: ارفع الملف ده على GitHub بنفس مكان catalog.json القديم (استبدال)، وبعدها أي جهاز يدوس "تحديث الأسعار من المصدر المركزي" هياخد الكتالوج الكامل.');
 }
 
 function syncCentralCatalog(){
