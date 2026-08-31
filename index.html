@@ -144,7 +144,7 @@
   }
   .catalog-item{
     display:grid;
-    grid-template-columns:44px 1.2fr 70px 100px 90px 90px 70px 70px 34px;
+    grid-template-columns:38px 2.4fr 55px 85px 75px 65px 55px 60px 28px;
     gap:6px;
     align-items:center;
     padding:6px 0;
@@ -568,7 +568,7 @@ function renderAreas(){
 
       <div class="part">
         <div class="part-title">🟫 الأرضية &nbsp; <span class="m2-badge">${floorM2} م²</span></div>
-        <div class="row" style="grid-template-columns:repeat(4,1fr) 1.4fr">
+        <div class="row" style="grid-template-columns:repeat(4,0.8fr) 2.2fr">
           <div><label>الطول (م)</label><input type="number" step="0.01" value="${area.parts.floor.length}" onchange="updatePart('${area.id}','floor','length',this.value)"></div>
           <div><label>العرض (م)</label><input type="number" step="0.01" value="${area.parts.floor.width}" onchange="updatePart('${area.id}','floor','width',this.value)"></div>
           <div><label>نسبة الهالك %</label><input type="number" value="${area.parts.floor.waste}" onchange="updatePart('${area.id}','floor','waste',this.value)"></div>
@@ -579,7 +579,7 @@ function renderAreas(){
 
       <div class="part">
         <div class="part-title">◽ الحوائط &nbsp; <span class="m2-badge">${wallM2} م²</span></div>
-        <div class="row" style="grid-template-columns:repeat(5,1fr) 1.4fr">
+        <div class="row" style="grid-template-columns:repeat(5,0.8fr) 2.2fr">
           <div><label>طول الغرفة (م)</label><input type="number" step="0.01" value="${area.parts.wall.length}" onchange="updatePart('${area.id}','wall','length',this.value)"></div>
           <div><label>عرض الغرفة (م)</label><input type="number" step="0.01" value="${area.parts.wall.width}" onchange="updatePart('${area.id}','wall','width',this.value)"></div>
           <div><label>ارتفاع الكسوة (م)</label><input type="number" step="0.01" value="${area.parts.wall.height}" onchange="updatePart('${area.id}','wall','height',this.value)"></div>
@@ -609,11 +609,11 @@ function productSearchBox(areaId, kind, selectedId){
   const currentLabel = selected ? productLabel(selected) : '';
   return `
     <div style="position:relative">
-      <input id="${boxId}" value="${currentLabel}" placeholder="اكتب اسم الصنف أو الكود..." autocomplete="off"
+      <input id="${boxId}" value="${currentLabel}" placeholder="اكتب جزء من اسم الصنف..." autocomplete="off"
         oninput="showProductSuggestions('${areaId}','${kind}',this.value)"
-        onfocus="showProductSuggestions('${areaId}','${kind}',this.value)"
+        onfocus="this.select(); showProductSuggestions('${areaId}','${kind}','')"
         onblur="setTimeout(()=>hideProductSuggestions('${areaId}','${kind}'), 200)">
-      <div id="${boxId}_list" style="display:none;position:absolute;z-index:50;top:100%;right:0;left:0;background:#fff;border:1px solid var(--line);max-height:220px;overflow-y:auto;box-shadow:2px 2px 4px rgba(0,0,0,0.15)"></div>
+      <div id="${boxId}_list" style="display:none;position:absolute;z-index:50;top:100%;right:0;left:0;background:#fff;border:1px solid var(--line);max-height:260px;overflow-y:auto;box-shadow:2px 2px 4px rgba(0,0,0,0.15)"></div>
     </div>
   `;
 }
@@ -633,10 +633,13 @@ function showProductSuggestions(areaId, kind, query){
     listEl.innerHTML = `<div style="padding:8px;font-size:13px;color:var(--slate)">لا توجد أصناف مطابقة${catalog.length<=2?' — استورد الكتالوج أولًا من قسم "كتالوج الأصناف"':''}</div>`;
   } else {
     listEl.innerHTML = matches.map(c => `
-      <div style="padding:8px;font-size:13px;cursor:pointer;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:8px"
+      <div style="padding:9px 10px;font-size:13.5px;cursor:pointer;border-bottom:1px solid var(--line)"
         onmousedown="pickProduct('${areaId}','${kind}','${c.id}')">
-        <span>${productLabel(c)}</span>
-        <span style="color:var(--clay-dark);font-family:'JetBrains Mono',monospace;white-space:nowrap">${c.price||0} ج/م²</span>
+        <div style="font-weight:700;color:var(--ink)">${c.name}</div>
+        <div style="display:flex;justify-content:space-between;gap:8px;margin-top:2px">
+          <span style="font-size:11.5px;color:var(--slate)">${c.code||''}${c.company?(' — '+c.company):''}</span>
+          <span style="color:var(--clay-dark);font-family:'JetBrains Mono',monospace;white-space:nowrap;font-size:12px">${c.price||0} ج/م²</span>
+        </div>
       </div>
     `).join('');
   }
