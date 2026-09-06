@@ -216,9 +216,9 @@
 
   <div class="card" style="margin-bottom:20px">
     <h2>بيانات العميل والمشروع</h2>
-    <div class="row" style="grid-template-columns:repeat(4,1fr)">
+    <div class="row" style="grid-template-columns:1fr 2fr 1fr 1fr">
       <div><label>اسم العميل</label><input id="clientName" placeholder="شركة الغنيمى"></div>
-      <div><label>الموقع / الوحدة</label><input id="unit" placeholder="B28 B82"></div>
+      <div><label>العنوان</label><input id="unit" placeholder="اكتب العنوان بالتفصيل: المبنى، الشقة، الشارع، المنطقة..."></div>
       <div><label>تليفون العميل</label><input id="phone" placeholder="01xxxxxxxxx"></div>
       <div><label>التاريخ</label><input id="pdate" type="date"></div>
     </div>
@@ -282,7 +282,7 @@
   <div class="card" style="margin-top:20px">
     <h2>فاتورة العميل <span class="eyebrow">حسب سعر المتر في الكتالوج</span></h2>
     <table>
-      <thead><tr><th>م</th><th>الصنف</th><th>الأماكن</th><th>الكمية (م²)</th><th>سعر المتر</th><th>الإجمالي</th></tr></thead>
+      <thead><tr><th>م</th><th>الصنف</th><th>المقاس</th><th>الأماكن</th><th>الكمية (م²)</th><th>سعر المتر</th><th>الإجمالي</th></tr></thead>
       <tbody id="invoiceBody"></tbody>
       <tfoot><tr><td colspan="5">إجمالي الفاتورة</td><td id="invSubtotal">0</td></tr></tfoot>
     </table>
@@ -348,6 +348,10 @@
 const LICENSE = {
   name: 'Home Blend — النسخة الرئيسية'
 };
+
+// الصق هنا رابط Google Apps Script بعد نشره (Deploy → Web app) عشان تتجمع كل فواتير المندوبين في شيت واحد
+// اتركه فاضي '' لو لسه معملتش الخطوة دي، والفواتير هتفضل تتحفظ محليًا بس زي العادة
+const CENTRAL_SALES_ENDPOINT = '';
 
 // لتفعيل مندوب: غيّر كلمة المرور والاسم بس (متغيرش username لو مش لازم)
 const SALES_REPS = [
@@ -901,6 +905,7 @@ function calculate(){
     tr.innerHTML = `
       <td>${serial}</td>
       <td>${product.name}</td>
+      <td>${product.l}×${product.w}</td>
       <td>${[...t.rooms].join('، ')}</td>
       <td>${t.m2.toFixed(2)}</td>
       <td>${(product.price||0).toFixed(2)}</td>
@@ -932,6 +937,21 @@ function nextSerialNumber(key){
   return String(n).padStart(4, '0');
 }
 
+function extractLineItems(){
+  const rows = document.querySelectorAll('#invoiceBody tr');
+  return Array.from(rows).map(tr=>{
+    const tds = tr.querySelectorAll('td');
+    return {
+      product: tds[1] ? tds[1].textContent.trim() : '',
+      size: tds[2] ? tds[2].textContent.trim() : '',
+      rooms: tds[3] ? tds[3].textContent.trim() : '',
+      qty: parseFloat(tds[4] ? tds[4].textContent : 0) || 0,
+      unitPrice: parseFloat(tds[5] ? tds[5].textContent : 0) || 0,
+      lineTotal: parseFloat(tds[6] ? tds[6].textContent : 0) || 0,
+    };
+  });
+}
+
 function buildInvoiceRecord(invNo){
   const clientName = document.getElementById('clientName').value || '';
   const unit = document.getElementById('unit').value || '';
@@ -950,6 +970,7 @@ function buildInvoiceRecord(invNo){
     clientName, unit, phone,
     repName: currentRep ? currentRep.name : '',
     rowsHtml, subtotalText, discountText, transportText, grandText, tafqitText,
+    items: extractLineItems(),
     subtotalNum: parseFloat(subtotalText)||0,
     grandNum: parseFloat(grandText)||0,
     paidNum: parseFloat(paidText)||0,
@@ -989,12 +1010,12 @@ function renderInvoiceWindow(record){
       <div style="font-size:11px;color:#999">${LICENSE.name}${record.repName?(" — المندوب: "+record.repName):""}</div>
       <div class="meta">
         <div>العميل: ${record.clientName}</div>
-        <div>الموقع/الوحدة: ${record.unit}</div>
+        <div>العنوان: ${record.unit}</div>
         <div>تليفون: ${record.phone}</div>
         <div>التاريخ: ${record.date}</div>
       </div>
       <table>
-        <thead><tr><th>م</th><th>الصنف</th><th>الأماكن</th><th>الكمية (م²)</th><th>سعر المتر</th><th>الإجمالي</th></tr></thead>
+        <thead><tr><th>م</th><th>الصنف</th><th>المقاس</th><th>الأماكن</th><th>الكمية (م²)</th><th>سعر المتر</th><th>الإجمالي</th></tr></thead>
         <tbody>${record.rowsHtml}</tbody>
       </table>
       <table class="totals">
@@ -1023,6 +1044,19 @@ function printInvoice(){
   const record = buildInvoiceRecord(invNo);
   saveInvoiceRecord(record);
   renderInvoiceWindow(record);
+  sendToCentralSales(record);
+}
+
+function sendToCentralSales(record){
+  if(!CENTRAL_SALES_ENDPOINT) return; // لسه ملحقتش تربط رابط جوجل شيت
+  fetch(CENTRAL_SALES_ENDPOINT, {
+    method: 'POST',
+    mode: 'no-cors', // Apps Script مش بيرجع CORS headers، بنبعت من غير ما ننتظر قراءة الرد
+    headers: {'Content-Type': 'text/plain;charset=utf-8'},
+    body: JSON.stringify(record)
+  }).catch(()=>{
+    // فشل الإرسال (مفيش نت مثلاً) — الفاتورة اتحفظت محليًا برضه وممكن تتبعت لاحقًا يدويًا
+  });
 }
 
 function reprintInvoice(invNo){
@@ -1111,7 +1145,9 @@ function printDeliveryNote(){
     const boxes = Math.ceil(t.m2 / (product.m2box||1));
     rows += `<tr>
       <td>${serial}</td>
-      <td>${product.name}${product.code?(' — '+product.code):''}</td>
+      <td>${product.name}</td>
+      <td>${product.l}×${product.w}</td>
+      <td>${product.code||''}</td>
       <td>${product.company||''}</td>
       <td>${t.rooms.join('، ')}</td>
       <td>${t.m2.toFixed(2)}</td>
@@ -1139,11 +1175,11 @@ function printDeliveryNote(){
       <div style="font-size:11px;color:#999">${LICENSE.name}${currentRep?(" — المندوب: "+currentRep.name):""}</div>
       <div class="meta">
         <div>العميل: ${clientName}</div>
-        <div>الموقع/الوحدة: ${unit}</div>
+        <div>العنوان: ${unit}</div>
         <div>التاريخ: ${pdate}</div>
       </div>
       <table>
-        <thead><tr><th>م</th><th>الصنف</th><th>الشركة</th><th>الفراغ / الاستخدام</th><th>الكمية (م²)</th><th>عدد الكراتين</th></tr></thead>
+        <thead><tr><th>م</th><th>الصنف</th><th>المقاس</th><th>الكود</th><th>الشركة</th><th>الفراغ / الاستخدام</th><th>الكمية (م²)</th><th>عدد الكراتين</th></tr></thead>
         <tbody>${rows}</tbody>
       </table>
       <div class="sign">
@@ -1367,7 +1403,8 @@ function setupDragEvents(el){
     dragRaycaster.setFromCamera(ndc, camera);
     const hits = dragRaycaster.intersectObjects(draggableFixtures);
     if(hits.length){
-      dragTarget = hits[0].object;
+      const hitObj = hits[0].object;
+      dragTarget = hitObj.userData.dragRoot || hitObj;
       dragPlane.set(new THREE.Vector3(0,1,0), -dragTarget.position.y);
       event.preventDefault();
     }
@@ -1510,24 +1547,70 @@ function renderViewer(){
   currentRoomBounds = {L, W};
   if(!area.fixtures) area.fixtures = {};
 
-  function addFixture(name, geo, color, defaultX, defaultZ, y){
+  function addFixtureGroup(name, defaultX, defaultZ, buildParts){
     const pos = area.fixtures[name] || {x:defaultX, z:defaultZ};
-    const mesh = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({color}));
-    mesh.position.set(pos.x, y, pos.z);
-    mesh.userData = {name, area, y};
-    roomGroup.add(mesh);
-    draggableFixtures.push(mesh);
-    return mesh;
+    const group = new THREE.Group();
+    group.position.set(pos.x, 0, pos.z);
+    group.userData = {name, area, y:0};
+    buildParts(group);
+    roomGroup.add(group);
+    group.traverse(obj=>{
+      if(obj.isMesh){ obj.userData.dragRoot = group; draggableFixtures.push(obj); }
+    });
+    return group;
   }
 
+  const white = 0xffffff, offwhite = 0xf2f2f0, cabinetLight = 0xe4dfd6, cabinetDark = 0xcfc7b8, counterTop = 0x3c3c3c;
+
   if(area.name.includes('حمام')){
-    addFixture('توالت', new THREE.BoxGeometry(0.4,0.4,0.6), 0xffffff, L/2-0.35, -W/2+0.4, 0.2);
-    addFixture('حوض', new THREE.BoxGeometry(0.5,0.15,0.4), 0xffffff, -L/2+0.4, -W/2+0.3, 0.75);
-    addFixture('بانيو', new THREE.BoxGeometry(1.5,0.5,0.75), 0xf0f0f0, 0, W/2-0.45, 0.25);
+    // تواليت: قاعدة + خزان + مقعد
+    addFixtureGroup('توالت', L/2-0.4, -W/2+0.4, g=>{
+      const base = new THREE.Mesh(new THREE.CylinderGeometry(0.16,0.20,0.38,16), new THREE.MeshStandardMaterial({color:white}));
+      base.position.y = 0.19; g.add(base);
+      const tank = new THREE.Mesh(new THREE.BoxGeometry(0.36,0.32,0.14), new THREE.MeshStandardMaterial({color:white}));
+      tank.position.set(0, 0.55, -0.17); g.add(tank);
+      const seat = new THREE.Mesh(new THREE.CylinderGeometry(0.21,0.21,0.05,20), new THREE.MeshStandardMaterial({color:offwhite}));
+      seat.position.y = 0.40; g.add(seat);
+    });
+
+    // حوض: قاعدة رفيعة + طشت
+    addFixtureGroup('حوض', -L/2+0.4, -W/2+0.3, g=>{
+      const pedestal = new THREE.Mesh(new THREE.CylinderGeometry(0.07,0.11,0.62,12), new THREE.MeshStandardMaterial({color:white}));
+      pedestal.position.y = 0.31; g.add(pedestal);
+      const basin = new THREE.Mesh(new THREE.BoxGeometry(0.55,0.14,0.42), new THREE.MeshStandardMaterial({color:white}));
+      basin.position.y = 0.65; g.add(basin);
+    });
+
+    // بانيو: هيكل خارجي + حوض داخلي غاطس
+    addFixtureGroup('بانيو', 0, W/2-0.45, g=>{
+      const shell = new THREE.Mesh(new THREE.BoxGeometry(1.6,0.5,0.75), new THREE.MeshStandardMaterial({color:offwhite}));
+      shell.position.y = 0.25; g.add(shell);
+      const basin = new THREE.Mesh(new THREE.BoxGeometry(1.4,0.34,0.55), new THREE.MeshStandardMaterial({color:0xcfe3ea}));
+      basin.position.y = 0.36; g.add(basin);
+    });
   }
+
   if(area.name.includes('مطبخ')){
-    addFixture('دولاب 1', new THREE.BoxGeometry(L*0.35,0.9,0.6), 0xdedede, -L*0.2, -W/2+0.3, 0.45);
-    addFixture('دولاب 2', new THREE.BoxGeometry(L*0.35,0.9,0.6), 0xd0d0d0, L*0.2, -W/2+0.3, 0.45);
+    // وحدات سفلية (3 وحدات منفصلة، كل واحدة قابلة للسحب لوحدها بمرونة)
+    const lowerCount = 3;
+    for(let i=0;i<lowerCount;i++){
+      const dx = -L*0.3 + i*(L*0.3);
+      addFixtureGroup('دولاب سفلي '+(i+1), dx, -W/2+0.3, g=>{
+        const body = new THREE.Mesh(new THREE.BoxGeometry(0.58,0.82,0.58), new THREE.MeshStandardMaterial({color: i%2===0?cabinetLight:cabinetDark}));
+        body.position.y = 0.41; g.add(body);
+        const top = new THREE.Mesh(new THREE.BoxGeometry(0.62,0.04,0.62), new THREE.MeshStandardMaterial({color:counterTop}));
+        top.position.y = 0.84; g.add(top);
+      });
+    }
+    // وحدات علوية (وحدتين، مرتفعتين عن مستوى العين)
+    const upperCount = 2;
+    for(let i=0;i<upperCount;i++){
+      const dx = -L*0.18 + i*(L*0.36);
+      addFixtureGroup('دولاب علوي '+(i+1), dx, -W/2+0.32, g=>{
+        const body = new THREE.Mesh(new THREE.BoxGeometry(0.55,0.5,0.32), new THREE.MeshStandardMaterial({color: cabinetLight}));
+        body.position.y = 1.55; g.add(body);
+      });
+    }
   }
 
   camera.position.set(L*0.9, H*1.1, W*1.4);
